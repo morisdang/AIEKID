@@ -1,0 +1,139 @@
+.side_navigation {
+  background-color: rgba(0, 0, 0, 0.842);
+  font-size: 30px;
+  border-radius: 10px;
+  min-height: 400px;
+
+  h3 {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 6px 0;
+  }
+
+  h4 {
+    color: white;
+    font-size: 20px;
+    padding: 8px 4px;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 10px;
+    border-bottom: 1px solid rgb(255, 255, 255);
+
+    &:hover {
+      color: black;
+      background-color: rgba(255, 255, 255, 0.622);
+    }
+  }
+}
+
+.slide_item {
+  font-size: 40px;
+
+  padding: 0 4px 0;
+
+  a {
+    color: white;
+  }
+
+  .slide_content {
+    border-radius: 10px;
+    background: rgba(255, 0, 0, 0.692);
+    padding: 2px 10px 50px;
+    margin: 6px 0;
+    position: relative;
+    z-index: 1;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(255, 0, 0);
+    }
+  }
+}
+
+.container_game-store {
+  margin: 0;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 10px 20px;
+
+  .wrapper-item {
+    width: 100%;
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
+
+.wrapp_time_formated {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  .date_formated,
+  .time_formated {
+    color: yellow;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .header-event {
+    .container:first-child {
+      flex-wrap: wrap;
+      span {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .event-list-container {
+    flex-wrap: wrap;
+
+    .event-item {
+      width: 200px;
+      .text-sm {
+        font-size: 10px;
+      }
+
+      .event-content {
+        padding: 10px !important;
+
+        .text-gray-500 {
+          margin-bottom: 0px !important;
+        }
+      }
+
+      .title-detail {
+        font-size: 15px;
+        margin-bottom: 0px;
+      }
+
+      .text-gray-600 {
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+      
+      .space-x-2 {
+        flex-wrap: wrap;
+        gap: 3px;
+        justify-content: flex-start;
+
+        .bg-gray-200 {
+          margin-left: 0px;
+          margin-right: 0px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .event-list-container {
+    .title-detail {
+      font-size: 20px;
+    }
+  }
+}
