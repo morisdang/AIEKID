@@ -18,44 +18,25 @@ import AssistantIcon from "@mui/icons-material/Assistant";
 import EventList from "../../EventList";
 import { formatDate } from "../../../utils/common";
 
-const swiperData = [
-  {
-    imageShow: event_1,
-    url: "url",
-  },
-  {
-    imageShow: event_2,
-    url: "url",
-  },
-  {
-    imageShow: event_4,
-    url: "url",
-  },
-  {
-    imageShow: event_3,
-    url: "url",
-  },
-  {
-    imageShow: event_5,
-    url: "url",
-  },
-  {
-    imageShow: event_6,
-    url: "url",
-  },
-];
+import event_01 from '../../../hamsbo/images/sự kiện/Cao bồi miền viễn tây.jpg'
+import event_02 from '../../../hamsbo/images/sự kiện/khám phá vũ trụ.jpg'
+import event_03 from '../../../hamsbo/images/sự kiện/thời đại khủng long.jpg'
+import event_04 from '../../../hamsbo/images/sự kiện/Thư viện phép thuật.jpg'
+import event_05 from '../../../hamsbo/images/sự kiện/halloween-haunted-house-concept-free-vector.jpg'
+import event_06 from '../../../hamsbo/images/sự kiện/truy tìm sự thật.jpg'
 
-const eventList = [
+
+const eventDetailData = [
   {
     event_id: "123",
-    title: "Hành trình sao Hỏa",
+    title: "Hành trình sao hỏa",
     event_date: formatDate(new Date(946684800000)),
     time_from: "21:00",
     time_to: "22:00",
     bonus_point_from: 50,
     bonus_point_to: 200,
-    description: "Hành trình sao Hỏa",
-    image_uri: doremon,
+    description: "Hành trình sao hỏa",
+    image_uri: event_1,
     rewards: {},
     join_conditions: {},
     hashtags: ["happiness", "math", "science"],
@@ -90,43 +71,153 @@ const eventList = [
     image_uri: job_event,
     rewards: {},
     join_conditions: {},
+    hashtags: ["brain", "thinking", "english"],
+    joined_members: 100,
+    address: "Bình Dương",
+  },
+  {
+    event_id: "1",
+    title: "fdffdd",
+    event_date: formatDate(new Date(1731390000000)),
+    time_from: "19:00",
+    time_to: "21:00",
+    bonus_point_from: 50,
+    bonus_point_to: 200,
+    description: "Hình thành tư duy suy luận",
+    image_uri: event_03,
+    rewards: {},
+    join_conditions: {},
+    hashtags: ["brain", "thinking", "english"],
+    joined_members: 100,
+    address: "Bình Dương",
+  },
+  {
+    event_id: "2",
+    title: "Bdfds",
+    event_date: formatDate(new Date(1731390000000)),
+    time_from: "19:00",
+    time_to: "21:00",
+    bonus_point_from: 50,
+    bonus_point_to: 200,
+    description: "Hình thành tư duy suy luận",
+    image_uri: event_05,
+    rewards: {},
+    join_conditions: {},
+    hashtags: ["brain", "thinking", "english"],
+    joined_members: 100,
+    address: "Bình Dương",
+  },
+];
+
+const swiperData = [
+  {
+    imageShow: event_1,
+    url: "url",
+  },
+  {
+    imageShow: event_2,
+    url: "url",
+  },
+  {
+    imageShow: event_4,
+    url: "url",
+  },
+  {
+    imageShow: event_3,
+    url: "url",
+  },
+  {
+    imageShow: event_5,
+    url: "url",
+  },
+  {
+    imageShow: event_6,
+    url: "url",
+  },
+];
+
+const eventList = [
+  {
+    event_id: "123",
+    title: "Sơ lược về lược sử con người",
+    event_date: formatDate(new Date(946684800000)),
+    time_from: "19:00",
+    time_to: "22:00",
+    bonus_point_from: 20,
+    bonus_point_to: 200,
+    description: "Từ vựng về lịch sử con người",
+    image_uri: event_03,
+    rewards: {},
+    join_conditions: {},
+    hashtags: ["history", "thinking", "theory"],
+    joined_members: 100,
+    address: "Bình Dương",
+  },
+  {
+    event_id: "345",
+    title: "Trí nhớ tuyệt đỉnh",
+    event_date: formatDate(new Date(1730390000000)),
+    time_from: "15:00",
+    time_to: "19:00",
+    bonus_point_from: 250,
+    bonus_point_to: 500,
+    description: "Luyện khả năng ghi nhớ",
+    image_uri: memory_event,
+    rewards: {},
+    join_conditions: {},
+    hashtags: ["memory", "brain"],
+    joined_members: 100,
+    address: "Bình Dương",
+  },
+  {
+    event_id: "567",
+    title: "Bậc thầy từ vựng",
+    event_date: formatDate(new Date(1731390000000)),
+    time_from: "19:00",
+    time_to: "21:00",
+    bonus_point_from: 1000,
+    bonus_point_to: 3000,
+    description: "Hình thành tư duy suy luận",
+    image_uri: job_event,
+    rewards: {},
+    join_conditions: {},
     hashtags: ["brain", "thinking", 'english'],
     joined_members: 100,
     address: "Bình Dương",
   },
-  // {
-  // event_id:"34",
+  {
+    event_id: "1",
+    title: "Cao bồi miền viễn tây",
+    event_date: formatDate(new Date(1731390000000)),
+    time_from: "19:00",
+    time_to: "21:00",
+    bonus_point_from: 2440,
+    bonus_point_to: 3000,
+    description: "Góc nhìn lịch sử miền viễn Tây",
+    image_uri: event_01,
+    rewards: {},
+    join_conditions: {},
+    hashtags: ["history", "thinking", 'special'],
+    joined_members: 100,
+    address: "Bình Dương",
+  },
+  {
+    event_id: "2",
+    title: "Hành trình sao Hỏa",
+    event_date: formatDate(new Date(1731390000000)),
+    time_from: "19:00",
+    time_to: "21:00",
+    bonus_point_from: 50,
+    bonus_point_to: 200,
+    description: "Từ vựng cần nhớ khi lên sao Hỏa?",
+    image_uri: event_02,
+    rewards: {},
+    join_conditions: {},
+    hashtags: ["brain", "science", 'english'],
+    joined_members: 100,
+    address: "Bình Dương",
+  },
 
-  //   title: 'Hành trình với sao Hỏa',
-  //   event_date: formatDate(new Date(946684800000)),
-  //   time_from: '21:00',
-  //   time_to: '22:00',
-  //   bonus_point_from: 50,
-  //   bonus_point_to: 200,
-  //   description: 'Hành trình với sao Hỏa nha!',
-  //   image_uri: doremon,
-  //   rewards: {},
-  //   join_conditions: {},
-  //   hashtags: ['happiness','math','science'],
-  //   joined_members: 100,
-  //   address: 'Bình Dương',
-  // },
-  // {
-  //     event_id:"546",
-  //   title: 'Hành trình với sao Hỏa',
-  //   event_date: formatDate(new Date(946684800000)),
-  //   time_from: '21:00',
-  //   time_to: '22:00',
-  //   bonus_point_from: 50,
-  //   bonus_point_to: 200,
-  //   description: 'Hành trình với sao Hỏa nha!',
-  //   image_uri: doremon,
-  //   rewards: {},
-  //   join_conditions: {},
-  //   hashtags: ['happiness','math','science'],
-  //   joined_members: 100,
-  //   address: 'Bình Dương',
-  // },
 ];
 
 const eventLists_org = [
@@ -183,12 +274,12 @@ const HomeStore = () => {
           <div className="flex items-center">
             <AssistantIcon />
 
-            <span className="text-lg font-bold">15+ điểm dự án triển khai</span>
+            <span className="text-lg font-bold">15+ Dạng sự kiện hấp dẫn</span>
           </div>
           <div className="flex items-center">
             <AssistantIcon />
 
-            <span className="text-lg font-bold">An toàn tuyệt đối</span>
+            <span className="text-lg font-bold">Hơn 1000+ trẻ em tham gia</span>
           </div>
           <div className="flex items-center">
             <AssistantIcon />

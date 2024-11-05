@@ -121,7 +121,6 @@ export const apiRegister = async (data) => {
 }
 export const apiLogin = async (data) => {
     let res = await API.post('/api/login', data)
-    
     return res.data
 }
 

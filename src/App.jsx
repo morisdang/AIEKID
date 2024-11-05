@@ -25,6 +25,8 @@ import CourseExplore from "./components/Explore/Course";
 import MemoryGame from "./components/Event/minigame/memory/MemoryGame";
 import GuessWordGame from "./components/Event/minigame/guess/GuessWordGame";
 import Lesson from "./components/Explore/Lesson";
+import Gallery from './components/gallery'
+
 function App() {
   const [userId, setUserId] = useState("");
   const [loading, setLoading] = useState(true);
@@ -124,6 +126,7 @@ function App() {
               element={<EventDetail />}
             />
             <Route path="/explore/:explore_id/:lesson_id" element={<Lesson />} />
+            <Route exact path="/gallery" element={<Gallery />} />
 
             <Route exact path="/explore" element={<HomeExplore />} />
             <Route
@@ -160,6 +163,7 @@ function App() {
               element={<GuessWordGame />}
             />
             <Route exact path="/event" element={<HomeStore />} />
+            <Route exact path="/gallery" element={<Gallery />} />
             <Route exact path="/lib" element={<BookLib />} />
             <Route exact path="/profile" element={<PersonalDetails />} />
             <Route

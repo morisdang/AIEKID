@@ -41,7 +41,6 @@ function BookLib() {
     const handleLevelChange = (e, selectedList) => {
         setSelectedLevels(selectedList.length > 0 ? selectedList : level_data);
     };
-
     return (
         <div className="BookLibContainer flex-1 container">
             <SearchBook setPremiumBook={setPremiumBook} onTypeChange={handleTypeChange} onLevelChange={handleLevelChange} />

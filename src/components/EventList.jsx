@@ -6,6 +6,8 @@ import 'swiper/swiper-bundle.css'; // Import Swiper styles
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from 'antd';
+import { styled } from '@mui/material/styles';
+import './scss/EventList.scss'
 
 const EventList = ({ explore_mode, eventList }) => {
   const [slidesToShow, setSlidesToShow] = useState(3);
@@ -54,12 +56,14 @@ const EventList = ({ explore_mode, eventList }) => {
         modules={[Navigation, Pagination]}
       > */}
 
+
         <Carousel
           dots={true}
           infinite
           slidesToShow={slidesToShow}
           slidesToScroll={1}
-          autoplay>
+          autoplay
+          >
           {eventList.children && eventList.children.map((item, i) => (
             // <SwiperSlide>
 
@@ -132,6 +136,7 @@ const EventList = ({ explore_mode, eventList }) => {
             </div>
           ))}
         </Carousel>
+
 
       {/* <div className="swiper-button-next"></div>
     <div className="swiper-button-prev"></div> */}

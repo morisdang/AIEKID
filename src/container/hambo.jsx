@@ -66,12 +66,13 @@ function Hambo(){
     const [closeBook, setCloseBook] = useState(true); 
     const [currentPage, setCurrentPage] = useState(1); 
     const [currentPDF, setCurrentPDF] = useState(pdf); 
-    const [numPages, setNumPages] = useState(null);
+    const [numPages, setNumPages] = useState(5);
 
     const fetchPdf = async (pdf_file) => {
         try {
-          const loadingTask = pdfjs.getDocument(pdf_file);
-          const pdf = await loadingTask.promise;
+            setCurrentPDF(pdf_file)
+            const loadingTask = pdfjs.getDocument(pdf_file);
+            const pdf = await loadingTask.promise;
           setNumPages(pdf.numPages);
         } catch (err) {
           setNumPages(0);
@@ -81,17 +82,17 @@ function Hambo(){
         if (book_id) {
             const bookData = booksList.filter(book => book.book_id === book_id);
             setCloseBook(false)
-            console.log(bookData)
 
             if (bookData.length > 0) {
                 setCurrentBook(bookData[0]); 
                 setCurrentPage(1)
-                fetchPdf(currentPDF)
+                fetchPdf(bookData[0].pdf_uri)
             }
         }
     }
 
     // console.log("currentBook", currentBook)
+    console.log(numPages)
     return (
       <div
         className='hambo'

@@ -1,17 +1,13 @@
 // import HTMLFlipBook from 'react-pageflip';
-import { Document, Page, pdfjs } from 'react-pdf';
 import './scss/hompage.scss'
 import React, { useState, useEffect, useRef } from "react";
-import logo from '../assests/logo.png'
-import banner1 from '../assests/banner_01.jpg'
-import banner2 from '../assests/banner_02.jpg'
-import banner3 from '../assests/banner_03.jpg'
-import gallery_01 from '../assests/gallery_01.jpg'
+import aboutme from '../hamsbo/images/Về chúng tôi/về chúng tôi 1.png'
+import {QRCodeSVG, QRCodeCanvas} from 'qrcode.react';
+     
 import testimonial_icon from '../assests/testimonial_icon_03.jpg'
-import {bannerContent, facilityContent, testimonialContent, FeaturesContent} from './helpers/home_content'
+import {bannerContent, facilityContent, testimonialContent, FeaturesContent, Gallary} from './helpers/home_content'
 import { Carousel } from 'antd';
 
-const swiperBullet = [1, 2, 3]
 
 
 function HomePage() {
@@ -54,7 +50,7 @@ function HomePage() {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			updateCount()
-		}, 8000);
+		}, 10000);
 
 		// Cleanup function to clear the interval
 		return () => clearInterval(interval);
@@ -72,7 +68,15 @@ function HomePage() {
 						}}
 					>
 						{bannerContent.map((item, index) => (
-							<div className={`banner-item slide-one swiper-slide ${indexSwiperBullet === index ? "swiper-slide-active" : ""}`}>
+							<div
+                            className={`banner-item slide-one swiper-slide ${indexSwiperBullet === index ? "swiper-slide-active" : ""}`}
+                                style={{
+                                backgroundImage: `url('${item.link}')`,  
+                                backgroundSize: 'cover',  
+                                backgroundPosition: 'center',
+                   
+                                }}
+                            >
 								<div className="banner-overlay"></div>
 								<div className="container">
 									<div className="banner-content">
@@ -117,9 +121,13 @@ function HomePage() {
     <section class="page-header section-notch">
         <div class="overlay">
         <div class="container">
-            <h3>Đừng bỏ lỡ những sự kiện khám phá của chúng tôi !!!</h3>
+            <h1 class="text-3xl font-bold text-gray-900 mx-4 text-white">Sẵn sàng cho trải nghiệm học tập thông minh?</h1>
+            <p class="text-xl text-gray-700 mb-4  text-white">
+                Chatbot Hamsbo – người bạn đồng hành trong học tập của bạn!
+            </p>
+          
             <ul>
-                <li><a href="/event" class="button-default bg-blue-600 mt-4">Bắt đầu tham gia ngay!</a></li>
+                <li><a href="/event" class="button-default bg-blue-600 mt-4">👉 Đăng ký ngay để nhận ưu đãi đặc biệt cho người mới! 🎉</a></li>
             </ul>
             {/* <ul>
             <li><a href="index.html">Home</a></li>
@@ -155,14 +163,16 @@ function HomePage() {
 						<div className="row">
 							<div className="col-lg-6">
 								<div className="about-image h-full">
-									<img src={banner1} alt="about image" className="img-responsive h-full object-cover object-right" />
+									<img src={aboutme} alt="about image" className="img-responsive h-full object-cover object-right" />
 								</div>
 							</div>
 							<div className="col-lg-6">
 								<div className="about-content mt-lg-6">
 									<h3 className='mt-4'>Về chúng tôi</h3>
-									<p>HamsboKid, một sản phẩm sáng tạo đến từ AIDEA, mang đến những giải pháp công nghệ tiên tiến, đặc biệt là trí tuệ nhân tạo (AI) trong lĩnh vực giáo dục. Chúng tôi cam kết tạo ra một môi trường học tập hiện đại, nơi trẻ em có thể phát triển kỹ năng, khám phá kiến thức và trải nghiệm những phương pháp giảng dạy sáng tạo.</p>
-									<p>Thông qua các công cụ như chatbot AI và sách giáo khoa kỹ thuật số, HamsboKid không chỉ giúp trẻ em học hỏi một cách thú vị mà còn cá nhân hóa trải nghiệm học tập theo nhu cầu riêng của từng em. Chúng tôi tin rằng công nghệ có thể mở ra những cánh cửa mới cho việc học và phát triển, giúp trẻ em trở thành những nhà khám phá sáng tạo trong tương lai.</p>
+									<p>
+                                    HamsboKid — một sản phẩm sáng tạo từ AIDEA, tự hào mang đến những giải pháp công nghệ tiên tiến, đặc biệt là trí tuệ nhân tạo (AI), nhằm cách mạng hóa lĩnh vực giáo dục. Chúng tôi không ngừng nỗ lực xây dựng một môi trường học tập hiện đại, nơi mà trẻ em không chỉ học hỏi mà còn khám phá thế giới xung quanh thông qua những phương pháp giảng dạy đầy cảm hứng.</p>
+									<p>Với các công cụ như chatbot AI thông minh và sách giáo khoa kỹ thuật số, HamsboKid tạo nên những trải nghiệm học tập cá nhân hóa, đáp ứng nhu cầu và sở thích của từng học sinh. Chúng tôi tin tưởng rằng công nghệ không chỉ là một công cụ, mà còn là chìa khóa mở ra những chân trời mới, giúp các em nhỏ trở thành những nhà sáng tạo và khám phá trong tương lai.
+                                    </p>
 									<ul>
 										<li><a href="#" className="button-default">Đọc thêm</a></li>
 										<li><a href="#" className="button-default">Bắt đầu học ngay!</a></li>
@@ -190,101 +200,35 @@ function HomePage() {
 					</ul>
 
 					<div className="gallery-items">
-						<div className="gallery-item branding packing">
-							<div className="gallery-image">
-								<img src={gallery_01} alt="gallery image" className="img-responsive" />
-								<div className="gallery-overlay">
-									<div className="bg"></div>
-								</div>
-								<div className="gallery-content">
-									<a href={gallery_01} data-rel="lightcase:myCollection"><i
-										className="icon flaticon-expand"></i></a>
-									<h4>Product Name Here</h4>
-									<span>By: KidsAcademy Theme</span>
-								</div>
-							</div>
-						</div>
-						<div className="gallery-item development photography">
-							<div className="gallery-image">
-								<img src={gallery_01} alt="gallery image" className="img-responsive" />
-								<div className="gallery-overlay">
-									<div className="bg"></div>
-								</div>
-								<div className="gallery-content">
-									<a href="images/gallery/gallery_bg_02.jpg" data-rel="lightcase:myCollection"><i
-										className="icon flaticon-expand"></i></a>
-									<h4>Product Name Here</h4>
-									<span>By: KidsAcademy Theme</span>
-								</div>
-							</div>
-						</div>
-						<div className="gallery-item branding packing">
-							<div className="gallery-image">
-								<img src={gallery_01} alt="gallery image" className="img-responsive" />
-								<div className="gallery-overlay">
-									<div className="bg"></div>
-								</div>
-								<div className="gallery-content">
-									<a href="images/gallery/gallery_bg_03.jpg" data-rel="lightcase:myCollection"><i
-										className="icon flaticon-expand"></i></a>
-									<h4>Product Name Here</h4>
-									<span>By: KidsAcademy Theme</span>
-								</div>
-							</div>
-						</div>
-						<div className="gallery-item development photography">
-							<div className="gallery-image">
-								<img src={gallery_01} alt="gallery image" className="img-responsive" />
-								<div className="gallery-overlay">
-									<div className="bg"></div>
-								</div>
-								<div className="gallery-content">
-									<a href="images/gallery/gallery_bg_04.jpg" data-rel="lightcase:myCollection"><i
-										className="icon flaticon-expand"></i></a>
-									<h4>Product Name Here</h4>
-									<span>By: KidsAcademy Theme</span>
-								</div>
-							</div>
-						</div>
-						<div className="gallery-item branding packing">
-							<div className="gallery-image">
-								<img src={gallery_01} alt="gallery image" className="img-responsive" />
-								<div className="gallery-overlay">
-									<div className="bg"></div>
-								</div>
-								<div className="gallery-content">
-									<a href="images/gallery/gallery_bg_05.jpg" data-rel="lightcase:myCollection"><i
-										className="icon flaticon-expand"></i></a>
-									<h4>Product Name Here</h4>
-									<span>By: KidsAcademy Theme</span>
-								</div>
-							</div>
-						</div>
-						<div className="gallery-item branding packing">
-							<div className="gallery-image">
-								<img src={gallery_01} alt="gallery image" className="img-responsive" />
-								<div className="gallery-overlay">
-									<div className="bg"></div>
-								</div>
-								<div className="gallery-content">
-									<a href="images/gallery/gallery_bg_06.jpg" data-rel="lightcase:myCollection"><i
-										className="icon flaticon-expand"></i></a>
-									<h4>Product Name Here</h4>
-									<span>By: KidsAcademy Theme</span>
-								</div>
-							</div>
-						</div>
+
+                    {Gallary.map(gallery => (
+                            <div className="gallery-item branding packing">
+                                <div className="gallery-image">
+                                    <img src={gallery} alt="gallery image" className="img-responsive" />
+                                    <div className="gallery-overlay">
+                                        <div className="bg"></div>
+                                    </div>
+                                    <div className="gallery-content">
+                                        <a href={gallery} data-rel="lightcase:myCollection"><i
+                                            className="icon flaticon-expand"></i></a>
+                                        <h4>Product Name Here</h4>
+                                        <span>By: KidsAcademy Theme</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
 					</div>
-					<div className="gallery-button"><a href="gallery.html" className="button-default">Xem thêm bộ sưu tập</a></div>
+					<div className="gallery-button"><a href="/gallery" className="button-default">Xem thêm bộ sưu tập</a></div>
 				</div>
 			</section>
 
 			<section className="page-header section-notch">
 				<div className="overlay">
 					<div className="container">
-						<h3>Đừng bỏ lỡ những sự kiện khám phá của chúng tôi !!!</h3>
+						<h3>🌟 Đừng bỏ lỡ những sự kiện khám phá của chúng tôi!!! 🌟</h3>
 						<ul>
-							<li><a href="/event" className="button-default bg-blue-600 mt-4">Bắt đầu tham gia ngay!</a></li>
+							<li><a href="/event" className="button-default bg-blue-600 mt-4">✨ Tham gia ngay để trải nghiệm những điều tuyệt vời! ✨</a></li>
 						</ul>
 						{/* <ul>
           <li><a href="index.html">Home</a></li>
@@ -311,7 +255,9 @@ function HomePage() {
 					>
 						{testimonialContent.map((item, index) => (
 							<div className=''>
-								<div className="testimonial-item">
+								<div className="testimonial-item"
+                                         
+                                >
 									<div className="testimonial-details">
 										<p>{item.content}</p>
 										<h4>{item.name} <span>{item.role}</span></h4>
@@ -319,7 +265,7 @@ function HomePage() {
 											className="img-responsive" />
 									</div>
 									<div className="testimonial-image">
-										<img src={gallery_01} alt="client image"
+										<img src={item.link} alt="client image"
 											className="img-responsive" />
 									</div>
 								</div>
@@ -329,7 +275,39 @@ function HomePage() {
 
 				</div>
 			</section>
-
+			<section className="about section-notch">
+				<div className="overlay padding-120">
+					<div className="container flex flex-row items-center justify-center text-center">
+								<div className="about-content mt-lg-6 mr-10 w-50">
+									<h3 className='mt-4'>Phương Pháp Giáo Dục Tiên Tiến Tại HamsboKid</h3>
+									<p>
+                                    HamsboKid cam kết mang đến cho trẻ em một hành trình học tập thú vị, nơi mà mỗi ngày đều là một cơ hội để phát triển kỹ năng, khám phá kiến thức và trải nghiệm sự mới mẻ của những phương pháp giảng dạy tiên tiến.</p>
+									<ul className='flex flex-row items-center justify-center'>
+										{/* <li><a href="#" className="button-default">Bắt đầu học ngay!</a></li> */}
+										<li><a href="#" className="button-default">Bắt đầu học ngay!</a></li>
+									</ul>
+								</div>
+								<div className="h-full">
+                                <div className='flex flex-row items-center justify-center text-center'>
+                                    <QRCodeCanvas 
+                                        id='qrcode'
+                                        value='https://reactjs.org/'
+                                        size={280}
+                                        level={'H'}
+                                        includeMargin={true}
+                                        />
+                                    </div>
+                                    <h4 className='mt-3 text-white'> 
+                                    💖 Donate to Our Team! 
+                                    </h4>
+                                    <h4 className='mt-3 text-white'>
+                                        Thanks for Your Support! 🌟
+                                    </h4>
+                                </div>
+               
+					</div>
+				</div>
+			</section>
 
 
 		</div>

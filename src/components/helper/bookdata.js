@@ -1,45 +1,94 @@
+import book_1 from '../../hamsbo/images/ảnh bìa sgk/khtn lớp 6.png'
+import book_2 from '../../hamsbo/images/ảnh bìa sgk/khtn lớp 5.png'
+import book_3 from '../../hamsbo/images/ảnh bìa sgk/lịch sử đl lớp 5.png'
+import book_4 from '../../hamsbo/images/ảnh bìa sgk/TA lớp 6.png'
+import book_5 from '../../hamsbo/images/ảnh bìa sgk/văn lớp 5.png'
+
+import pdf_book_1 from '../../hamsbo/images/folder sgk/KHTN lớp 6.pdf'
+import pdf_book_2 from '../../hamsbo/images/folder sgk/KHTN lớp 5.pdf'
+import pdf_book_3 from '../../hamsbo/images/folder sgk/lịch sử địa lí lớp 5.pdf'
+import pdf_book_4 from '../../hamsbo/images/folder sgk/TA lớp 6.pdf'
+import pdf_book_5 from '../../hamsbo/images/folder sgk/văn lớp 5.pdf'
+
+
 export const booksData = [
     {
-      book_id: '9788129112859',
-      title: 'I Bought The Monks',
+      book_id: '1',
+      title: 'Khoa học tự nhiên lớp 6',
       rating: 4.3,
       year: 2001,
-      publisher: 'Rupa Publications India',
-      image_uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlQFbtMKRPc8ShG326kVAe4rQ0Fou7eXeoNg&s',
+      publisher: 'Khoa học tự nhiên lớp 6',
+      pdf_uri:pdf_book_1,
+      image_uri: book_1,
       book_code: 'bio',
       label: 'KHTN',
       premium: 1,
-      level: 1,
+      level: 6,
       price : 1000
     },
     {
-      book_id: '9780618263225',
-      title: 'The Lord of the Rings',
+      book_id: '2',
+      title: 'Khoa học tự nhiên lớp 5',
       rating: 4.3,
       year: 2004,
-      publisher: 'HarperCollins Publishers',
+      publisher: 'Cánh diều',
       book_code: 'bio',
-      level: 2,
+      level: 5,
       label: 'KHTN',
       premium: 0,
-      image_uri: 'https://dorahome.info/wp-content/uploads/2021/09/truyen-ngan-doremon-doc-xuoi-1996-vol-10.jpg',
+      image_uri: book_2,
+      pdf_uri:pdf_book_2,
+
       price : 1000000
     },
 
 
     {
-      book_id: '9780984221233',
-      title: 'A Python Book',
+      book_id: '3',
+      title: 'Lịch sủ địa lý 5',
       rating: 4.3,
       year: 2006,
-      publisher: 'Platypus Global Media',
-      book_code: 'math',
+      publisher: 'Cánh diều',
+      book_code: 'history',
       label: 'Toán',
-      level: 2,
+      level: 5,
       premium: 0,
       price : 1000,
-      image_uri: 'https://m.media-amazon.com/images/I/51M3xZKX9hL._AC_UF1000,1000_QL80_.jpg'
-    }
+      pdf_uri:pdf_book_3,
+
+      image_uri: book_3
+    },
+    {
+      book_id: '4',
+      title: 'Tiếng anh 6',
+      rating: 4.3,
+      year: 2006,
+      publisher: 'Cánh diều',
+      book_code: 'english',
+      label: 'Toán',
+      level: 6,
+      premium: 0,
+      price : 1000,
+      pdf_uri:pdf_book_4,
+
+      image_uri: book_4
+    },
+    {
+      book_id: '5',
+      title: 'Ngữ văn 5',
+      rating: 4.3,
+      year: 2006,
+      publisher: 'Cánh diều',
+      book_code: 'literature',
+      label: 'Toán',
+      level: 5,
+      premium: 0,
+      price : 1000,
+      pdf_uri:pdf_book_5,
+
+      image_uri: book_5
+    },
+ 
   ];
   
 

@@ -35,7 +35,6 @@ const chooseBook = (e) => {
     }
 
     
-
   return (
     <div className="box">
     <ul className="books-list">

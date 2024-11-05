@@ -10,13 +10,14 @@ const SwiperPagination = ({swiperData, slidesPerView=3, delay=3000, pagination=t
   return (
     <Swiper
 
-      spaceBetween={30} // Space between slides
-      slidesPerView={slidesPerView} // Show one slide at a time
+      spaceBetween={30} 
+      slidesPerView={slidesPerView} 
       autoplay={{ 
-        delay: delay, // Delay between slides (in ms)
-        disableOnInteraction: false // Continue autoplay after interaction
+        delay: delay,
+        disableOnInteraction: false 
       }}
-      pagination={{ clickable: pagination }} // Enable clickable pagination
+      pagination={{ clickable: pagination }} 
+      navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
       modules={[Autoplay, Pagination, Navigation, EffectCoverflow]}
       effect="coverflow"
       coverflowEffect={{
@@ -24,15 +25,15 @@ const SwiperPagination = ({swiperData, slidesPerView=3, delay=3000, pagination=t
         stretch: 0,
         depth: 120,
         modifier: 1,
-        slideShadows: true, // Enable slide shadows
+        slideShadows: true,
       }}
     >
-      {/* Swiper slides */}
       {swiperData && swiperData.map((item, i) => (
         <SwiperSlide>
         <img className='h-100'  src={item.imageShow} alt={`Slide ${i}`} />
         </SwiperSlide>
       ))}
+        
     </Swiper>
   );
 };
