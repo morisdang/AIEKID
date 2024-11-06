@@ -11,8 +11,12 @@ import HomeIcon from '@mui/icons-material/Home';
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 import GrainIcon from '@mui/icons-material/Grain';
 import { Link } from "react-router-dom";
-
 import { experimentalStyled as styled } from '@mui/material/styles';
+import Lesson from "./Lesson";
+import topicContentData from "../../utils/topicData";
+import topicImageData from "../../utils/topicImageData";
+import { useParams } from "react-router-dom";
+import { eventList } from "../../utils/data";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
   ...theme.typography.body2,
@@ -28,52 +32,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 
-const CourseList = [
-  {
-    course_id: "123",
-
-    title: 'Hành trình với sao Hỏa',
-    description: 'Hành trình với sao Hỏa nha!',
-    image_uri: doremon,
-  },
-
-  {
-    course_id: "123",
-
-    title: 'Hành trình với sao Hỏa',
-    description: 'Hành trình với sao Hỏa nha!',
-    image_uri: doremon,
-  },
-
-  {
-    course_id: "123",
-
-    title: 'Hành trình với sao Hỏa',
-    description: 'Hành trình với sao Hỏa nha!',
-    image_uri: doremon,
-  },
-
-  {
-    course_id: "123",
-
-    title: 'Hành trình với sao Hỏa',
-    description: 'Hành trình với sao Hỏa nha!',
-    image_uri: doremon,
-  },
-
-  {
-    course_id: "123",
-
-    title: 'Hành trình với sao Hỏa',
-    description: 'Hành trình với sao Hỏa nha!',
-    image_uri: doremon,
-  },
-
-
-
-
-];
-
 const breadcrumbs = [
   {
     title: "Khám phá",
@@ -81,29 +39,48 @@ const breadcrumbs = [
     link: null,
     index:0,
   },
-  {
-    title: "Hành trình với sao Hỏa",
-    icon: <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
-    link: "topic",
-    index:1,
 
-  },
 
 ]
 
 
 const topicList = [
     {
-      id: "123",
-      title: 'topicList',
+      id: "1",
+      title: 'topic 1',
       description: 'Hành trình với sao Hỏa nha!',
       image_uri: doremon,
     },
+
 ]  
 const lessonList = [
     {
-      id: "123",
-      title: 'lessonList',
+      id: "1",
+      title: 'lesson 1',
+      description: 'Hành trình với sao Hỏa nha!',
+      image_uri: doremon,
+    },
+    {
+      id: "2",
+      title: 'lesson 2',
+      description: 'Hành trình với sao Hỏa nha!',
+      image_uri: doremon,
+    },
+    {
+      id: "3",
+      title: 'lesson 3',
+      description: 'Hành trình với sao Hỏa nha!',
+      image_uri: doremon,
+    },
+    {
+      id: "4",
+      title: 'lesson 4',
+      description: 'Hành trình với sao Hỏa nha!',
+      image_uri: doremon,
+    },
+    {
+      id: "5",
+      title: 'lesson 5',
       description: 'Hành trình với sao Hỏa nha!',
       image_uri: doremon,
     },
@@ -111,7 +88,9 @@ const lessonList = [
 
 const explore_dict = {
     topic: topicList,
-    lesson: lessonList,
+    lessonList: lessonList,
+   
+
 }
 
 function CourseExplore() {
@@ -119,29 +98,52 @@ function CourseExplore() {
   const [contentList, setContentList] = useState(explore_dict['topic']);
   const [breadIndex, setBreadIndex] = useState(breadcrumbs.length);
   const [currentPos, setCurrentPos] = useState('topic');
+  const { explore_id } = useParams();
+  useEffect(() => {
+    const topicItem = eventList.find((item) => item.event_id === explore_id);
+    setBreadcrumbList([...breadcrumbList, {
+        title: topicItem.title,
+        icon: <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
+        link: "topic",
+        index:1,
+        
+    }])
+
+  }, [explore_id])
 
   const handleSwitchBreadcrumb = (item) => {
-    if (item.link){
-        setCurrentPos(item.link)
-        setBreadcrumbList(breadcrumbList.slice(0, item.index+1));
-        setContentList(explore_dict[item.link])
+    if (item && item.index === 0){
+        window.location.href = '/explore';
+    
+    } else {
+        if (item.link){
+            setCurrentPos(item.link)
+            setBreadcrumbList(breadcrumbList.slice(0, item.index+1));
+            setContentList(explore_dict[item.link])
+        }
     }
+
 
   }
   const handleClickContent = (item, nextPos) => {
-    console.log(nextPos)
 
     let breadcrumb = {
         title: item.title,
         icon: <GrainIcon sx={{ mr: 0.5 }} fontSize="inherit" />,
         link: nextPos,
         index: breadcrumbList.length
-      }
+        }
     if (nextPos) {
-      setBreadcrumbList([...breadcrumbList, breadcrumb])
-      setCurrentPos(nextPos)
-      setContentList(explore_dict[nextPos])
+        if (nextPos === 'lesson'){
+            const lessonItem = topicImageData.find((lessones) => lessones.id === item.id);
+            setContentList(lessonItem)
+        } else {
+            setContentList(explore_dict[nextPos])
+        }
+        setBreadcrumbList([...breadcrumbList, breadcrumb])
+        setCurrentPos(nextPos)
     } 
+
 
   }
 console.log(currentPos)
@@ -151,13 +153,15 @@ console.log(currentPos)
     >
 
       <IconBreadcrumbs breadcrumbList={breadcrumbList} handleSwitchBreadcrumb={handleSwitchBreadcrumb} />
-
-      {currentPos && currentPos === 'topic' ? 
-      (<TopicExplore contentList={contentList} handleClickContent={handleClickContent}/>)
-      :
-      (<LessonExplore contentList={contentList}/>)
-      
-      }
+        {
+        currentPos === 'topic' ? (
+            <TopicExplore contentList={contentList} handleClickContent={handleClickContent} />
+        ) : currentPos === 'lessonList' ? (
+            <LessonExplore contentList={contentList} handleClickContent={handleClickContent} />
+        ) : currentPos === 'lesson' ? (
+            <Lesson contentList={contentList} />
+        ) : null
+        }
 
     </div>
   );

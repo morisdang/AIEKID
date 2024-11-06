@@ -92,7 +92,6 @@ function Hambo(){
     }
 
     // console.log("currentBook", currentBook)
-    console.log(numPages)
     return (
       <div
         className='hambo'

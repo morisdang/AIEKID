@@ -67,22 +67,22 @@ export let FeaturesContent = [
     {
         icon: 'fa-solid fa-puzzle-piece', 
         title: 'Chatbot', 
-        content_p: 'Nền tảng của chúng tôi kết hợp giữa niềm vui và giáo dục với AI, giúp trẻ em học hỏi trong khi tận hưởng những giây phút tuyệt vời!',
+        content_p: 'Với khả năng trả lời nhanh chóng và gợi ý thông minh, chatbot sẽ giúp bạn vượt qua mọi thách thức và tìm thấy nguồn cảm hứng mới để học tập hiệu quả hơn bao giờ hết.',
     },
     {
         icon: 'fa-solid fa-headset', 
         title: 'Sự kiện', 
-        content_p: 'Bạn Hamsbo luôn sẵn sàng hỗ trợ việc học, trả lời câu hỏi và hướng dẫn trẻ trên hành trình học tập của mình.',
+        content_p: 'Đừng bỏ lỡ cơ hội tham gia các sự kiện hấp dẫn mà chúng tôi tổ chức! Đây là nơi kết nối những tâm hồn yêu học hỏi và trải nghiệm những trò chơi thú vị.',
     },
     {
         icon: 'fa-solid fa-earth-americas', 
         title: 'Khám phá', 
-        content_p: 'Khám phá các chủ đề theo sở thích của riêng bạn với những câu chuyện và hoạt động tương tác.',
+        content_p: 'Từ các khóa học hấp dẫn đến những tài liệu độc quyền, mọi thứ đều sẵn sàng để bạn chinh phục. ',
     },
     {
         icon: 'fa-solid fa-repeat', 
         title: 'Thư viện', 
-        content_p: 'Học không nhất thiết phải nhàm chán! Kết hợp giữa giải trí và giáo dục, mang đến cho trẻ cơ hội rèn luyện kỹ năng trong khi vẫn vui chơi.',
+        content_p: 'Với sự hỗ trợ của chatbot thông minh, bạn dễ dàng hỏi đáp và nhận câu trả lời phù hợp ngay khi học trên sách.',
     }
 ];
 export let Gallary = [

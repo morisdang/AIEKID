@@ -7,7 +7,7 @@ import Card from '@mui/material/Card';
 import { useNavigate } from 'react-router-dom';
 
 
-function LessonExplore({contentList}) {
+function LessonExplore({contentList, handleClickContent}) {
 const navigate = useNavigate();
 
   const handleClickLesson = (item) => {
@@ -21,7 +21,7 @@ const navigate = useNavigate();
       {contentList && contentList.map((item, index) => (
 
         <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-          <Card sx={{ width: "98%" }} onClick={() => (handleClickLesson(item))}>
+          <Card sx={{ width: "98%" }} onClick={() => (handleClickContent(item, 'lesson'))}>
             <div className="max-w-sm shadow-lghover:shadow-xl bg-white rounded-lg  overflow-hidden transform transition duration-500 hover:scale-105">
               <div className="relative">
                 <img className="w-full h-48 object-cover" src={item.image_uri} alt="Hành trình với sao Hỏa" />

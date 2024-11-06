@@ -125,7 +125,6 @@ function App() {
               path="/event/:event_id/detail"
               element={<EventDetail />}
             />
-            <Route path="/explore/:explore_id/:lesson_id" element={<Lesson />} />
             <Route exact path="/gallery" element={<Gallery />} />
 
             <Route exact path="/explore" element={<HomeExplore />} />
@@ -171,7 +170,6 @@ function App() {
               path="/event/:event_id/detail"
               element={<EventDetail />}
             />
-            <Route path="/explore/:explore_id/:lesson_id" element={<Lesson />} />
             <Route exact path="/explore" element={<HomeExplore />} />
 
             <Route

@@ -100,24 +100,24 @@ function HomePage() {
 				</div>
 			</section>
 
-			<section className="facility padding-120">
-				<div className="container">
-					<div className="row">
-
-						{facilityContent.map((item, index) => (
-							<div className="col-lg-3 col-sm-6 col-xs-12">
-								<div className="facility-item">
-									<span className="">
-										<i className={`icon ${item.icon}`}></i>
-									</span>
-									<h4>{item.title}</h4>
-									<p>{item.content_p}</p>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
+            <section class="facility padding-120">
+            <div class="container">
+                <div class="row">
+                
+                {FeaturesContent.map((item, index) => (
+                        <div class="col-lg-3 col-sm-6 col-xs-12">
+                        <div class="facility-item">
+                            <span class="">
+                                <i className={`icon ${item.icon}`}></i>
+                            </span>
+                            <h4>{item.title}</h4>
+                            <p>{item.content_p}</p>
+                        </div>
+                    </div>
+                    ))}
+                </div>
+            </div>
+        </section>
     <section class="page-header section-notch">
         <div class="overlay">
         <div class="container">
@@ -137,25 +137,25 @@ function HomePage() {
         </div>
         </div>
     </section>
+    <section className="facility padding-120">
+				<div className="container">
+					<div className="row">
 
-        <section class="facility padding-120">
-            <div class="container">
-                <div class="row">
-                
-                {FeaturesContent.map((item, index) => (
-                        <div class="col-lg-3 col-sm-6 col-xs-12">
-                        <div class="facility-item">
-                            <span class="">
-                                <i className={`icon ${item.icon}`}></i>
-                            </span>
-                            <h4>{item.title}</h4>
-                            <p>{item.content_p}</p>
-                        </div>
-                    </div>
-                    ))}
-                </div>
-            </div>
-        </section>
+						{facilityContent.map((item, index) => (
+							<div className="col-lg-3 col-sm-6 col-xs-12">
+								<div className="facility-item">
+									<span className="">
+										<i className={`icon ${item.icon}`}></i>
+									</span>
+									<h4>{item.title}</h4>
+									<p>{item.content_p}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
 
 			<section className="about section-notch">
 				<div className="overlay padding-120">
@@ -219,7 +219,7 @@ function HomePage() {
                         ))}
 
 					</div>
-					<div className="gallery-button"><a href="/gallery" className="button-default">Xem thêm bộ sưu tập</a></div>
+					{/* <div className="gallery-button"><a href="/gallery" className="button-default">Xem thêm bộ sưu tập</a></div> */}
 				</div>
 			</section>
 
