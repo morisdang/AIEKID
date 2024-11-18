@@ -1,0 +1,41 @@
+.SearchBook {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.container-header-search-book {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.selected-book-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  .btn-book-rank {
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .selected-book-container {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
+
+@media screen and (max-width: 748px) {
+  .selected-book-container {
+    margin-top: 15px;
+    flex-direction: row;
+  }
+  .SearchBook {
+    justify-content: center;
+  }
+  .container-header-search-book {
+    flex-direction: column;
+    justify-content: center;
+  }
+}

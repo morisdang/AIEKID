@@ -1,0 +1,10 @@
+.BookContainer{
+    overflow: hidden;
+    // transition: max-width 0.8s ease-in-out; 
+    width: 30vw;
+    &.hidden {
+        max-width: 0;
+        display: block;
+    }
+
+}

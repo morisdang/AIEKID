@@ -1,0 +1,62 @@
+.box {
+    box-shadow: 1px 1px 3px 4px #eee;
+    padding: 10px;
+    margin-top: 20px;
+    height: -webkit-fill-available;
+    min-height: 70vh;
+  }
+  .books-list{
+    display: flex;
+    justify-content: space-around;
+    gap: 25px;
+    overflow: hidden;
+    flex-wrap: wrap;
+    height: inherit;
+    overflow: auto;
+    padding-left: 0rem !important;
+  }
+  .ul-books-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .book {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+  }
+  
+  .book img {
+        width: 220px;
+        height: 180px;
+    // flex: 0.9;
+  }
+  
+  .book  {
+    h3{
+        text-align: center;
+        margin: 0;
+        font-size: 22px;
+        font-style: bold;
+    }
+    p{
+        font-size: 18px;
+        margin: 0;
+        font-weight: 500;
+    }
+  }
+  .book-item-wrapper{
+    margin: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    &.choice{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    }
+  }

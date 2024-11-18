@@ -1,0 +1,32 @@
+#root {
+  min-height: 100vh !important;
+  width: 100vw !important;
+}
+.App {
+  /* background-color: rgb(181, 171, 173); */
+}
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+.hidden {
+  display: none;
+}
+
+.title-detail {
+  font-family: "Gluten", cursive;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
+}

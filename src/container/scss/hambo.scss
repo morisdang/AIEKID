@@ -1,0 +1,52 @@
+.hambo {
+  height: 85vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  gap: 20px;
+  align-items: start;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 781px) {
+  .hambo {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .chatbot-wrapper {
+    width: 95vw;
+  }
+
+  .cs-message-list {
+    height: 400px !important;
+  }
+}
+
+.ChatcontainerContainer {
+  flex: 1;
+  height: inherit;
+}
+.hambo-booklib-wrapper {
+  padding: 10px;
+  height: 100%;
+  scale: 0.6;
+  zoom: 0.8;
+  -moz-transform: scale(1.4);
+  transform: scale(1.4);
+  transform-origin: top;
+  margin-top: 5px;
+  // width: 36%;
+}
+.bookUtils {
+}
+.hamboBook-toolip-wrapper {
+  flex: 0.5;
+  height: 90vh;
+}
+.book-wrapper {
+  padding: 0 2%;
+}

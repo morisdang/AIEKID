@@ -1,0 +1,171 @@
+:root {
+  --greyscale-100: #FFFFFF;
+  --greyscale-95: #F5F5F5;
+  --greyscale-90: #E2E2E5;
+  --greyscale-80: #D6D6D6;
+  --greyscale-70: #B7B7B7;
+  --greyscale-60: #A2A3A3;
+  --greyscale-50: #45474A;
+  --greyscale-40: #6E7171;
+  --greyscale-30: #444545;
+  --greyscale-20: #2F3033;
+  --greyscale-10: #141515;
+  --greyscale-0: #1A1C1E;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+[hidden] {
+	display: none!important;
+}
+body {
+	-webkit-user-select: none;
+	user-select: none;
+	font: 13px/1.3 system-ui, "Segoe UI";
+	color: #1a1c1e;
+}
+
+/* Custom scroll bars */
+::-webkit-scrollbar {
+  border-radius: 4px;
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  width: 4px;
+  border-radius: 4px;
+  background: transparent;
+  padding: 0 2px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  width: 4px;
+  background: rgba(163, 162, 162, 0.4);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border-radius: 4px;
+  width: 4px;
+  background: rgba(163, 162, 162, 0.6);
+}
+
+::-webkit-scrollbar-thumb:active {
+  border-radius: 4px;
+  width: 4px;
+  background: rgba(163, 162, 162, 0.8);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  outline: none;
+  border: none;
+
+  //styleName: Button/14-SB-Button;
+  font-family: Segoe UI;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: center;
+
+  
+}
+
+.btn.filled-primary {
+  background: #4fba69;
+  color: #FFFFFF;
+}
+
+.btn-icon {
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1c1e;
+  flex-shrink: 0;
+  outline: none;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.btn-icon:hover {
+  background-color: #aaabae3d;
+}
+
+.btn-icon::active {
+  background-color: #aaabae5c;
+}
+
+.btn-icon.filled-primary {
+  background: #4fba69;
+  color: #FFFFFF;
+}
+
+button:not(:disabled):not([disabled]) {
+	cursor: pointer;
+}
+button span {
+	padding: 0 8px;
+}
+
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+.textarea {
+  outline: none;
+  color: #1a1c1e;
+  font-family: Segoe UI;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+  width: 100%;
+  border-radius: 8px;
+  padding: 8px;
+  overflow: overlay;
+  border: none;
+  outline: 1px solid #76777a;
+}
+
+.textarea:focus {
+  outline: 2px solid #4FBA69;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn-icon {
+    color: #E2E2E5;
+    background: transparent;
+
+  }
+
+  .btn-icon:hover {
+    background-color: #aaabae3d;
+  }
+
+  .btn-icon:active {
+    background-color: #aaabae5c;
+  }
+
+  .btn-icon.filled-primary {
+    background: #4fba69;
+    color: #FFFFFF;
+  }
+
+  .textarea {
+    color: #E2E2E5;
+    background: #2F3033;
+  }
+}
