@@ -1,4 +1,7 @@
 .ranking-wrapper {
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   #ranking-header {
     width: 100%;
     display: flex;
@@ -6,6 +9,7 @@
     justify-content: space-between;
     padding: 2.5rem 2rem;
     cursor: pointer;
+
   }
 
   .share {

@@ -23,6 +23,7 @@ function LoginPage() {
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState([]);
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -79,7 +80,7 @@ function LoginPage() {
             "password": password,
         }
         let api_res = await apiLogin(payload)
-
+        console.log(api_res)
         if (api_res.user_info){
             setCookie({email: email, id: api_res.user_info.user_id})
             window.location.href = `/`
@@ -102,15 +103,14 @@ function LoginPage() {
               <img src={icon}
                 className="rounded-full"
                 style={{ width: '150px' }} alt="logo" />
-              <h4 className="mt-1 ml-10 mb-1 pb-1">We are The AIDEA team</h4>
+              <h4 className="mt-1 ml-10 mb-1 pb-1">Chúng tôi là team AIDEA</h4>
             </div>
 
-            <p>Please login to your account</p>
-
+            <p>Vui lòng đăng nhập vào tài khoản của bạn</p>
 
             <MDBInput
               wrapperClass="mb-4"
-              label="Email address"
+              label="Email"
               id="form1"
               type="email"
               value={email}
@@ -118,7 +118,7 @@ function LoginPage() {
             />
             <MDBInput
               wrapperClass="mb-4"
-              label="Password"
+              label="Mật khẩu"
               id="form2"
               type="password"
               value={password}
@@ -127,17 +127,17 @@ function LoginPage() {
             {error && <p style={{ color: 'red' }}>{error}</p>}
 
             <div className="text-center pt-1 mb-5 pb-1">
-                <button className="m-2 p-2 rounded-lg w-100 text-white gradient-custom-2" onClick={handleSignIn}>Sign in</button>
+                <button className="m-2 p-2 rounded-lg w-100 text-white gradient-custom-2" onClick={handleSignIn}>Đăng nhập</button>
               <button onClick={login} type="button" className="login-with-google-btn" >
-                Sign in with Google 🚀
+                Đăng nhập bằng Google 🚀
               </button>
             </div>
 
             <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="mb-0">Don't have an account?</p>
+              <p className="mb-0">Bạn chưa có tài khoản?</p>
               <Link to='/register' >
                 <button className="ripple ripple-surface ripple-surface-dark btn btn-outline-danger mx-2">
-                  Register
+                  Đăng ký
                 </button>
               </Link>
 

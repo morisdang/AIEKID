@@ -7,7 +7,7 @@ const [isAchieved, setIsAchieved] = useState(section.progress === 100);
 
 
   return (
-    <div className={`mb-20 ${isAchieved ? "" : "opacity-40 bg-gray-300 select-none"}`}>
+    <div className={`mb-20 ${isAchieved ? "" : "opacity-40 select-none"}`}>
     <div className="w-full border-2 border-black/10 bg-white relative flex flex-column rounded-lg shadow-xl p-0 max-w-sm mx-auto">
       <div className="flex justify-center mb-4 absolute top-0 left-0 right-0 transform -translate-y-1/2">
         <div className="relative">
@@ -33,25 +33,25 @@ const [isAchieved, setIsAchieved] = useState(section.progress === 100);
           </div>
         </div>
       </div>
-      <div className="mt-12 text-center text-gray-700 mb-2">
-        <span className="text-xs uppercase font-bold text-gray-500">YOU'VE GOT ACHIEVEMENT</span>
-        <h2 className="text-3xl font-bold mb-0">{section.title}</h2>
+      <div className="mt-16 text-center text-gray-700 mb-2">
+        <span className="text-s uppercase font-bold text-gray-500">Bạn đã nhận được huy hiệu</span>
+        <h2 className="text-3xl font-bold m-3 mb-0 mt-2 font-sans">{section.title}</h2>
       </div>
-      <div className="text-center text-4xl font-bold text-purple-700">+{section.bonus}</div>
-      <div className="text-center text-xs text-gray-500">bonus points</div>
-      <div className="h-[140px] rounded-bl-lg rounded-br-lg bg-gradient-to-r from-purple-500 to-blue-500 p-0">
+      <div className="text-center text-3xl font-bold text-purple-700">+{section.bonus}</div>
+      <div className="text-center text-lg text-gray-500">bonus points</div>
+      <div className="h-[180px] rounded-bl-lg rounded-br-lg bg-gradient-to-r from-purple-500 to-blue-500 p-0">
         <div className="bg-white rounded-b-[100%] pt-6">
         </div>
-        <h3 className="text-lg font-bold text-white text-center mt-4">Congratulations!</h3>
-        <p className="text-sm text-white text-center mt-2">
+        <h3 className="text-2xl font-bold text-white text-center mt-4">Xin chúc mừng!</h3>
+        <p className="text-3sm m-4 text-white text-center mt-2">
         {section.message}
         </p>
       </div>
-      <button className="mt-4 bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded
+      {/* <button className="mt-4 bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded
         w-1/2 h-10 text-xs left-0 right-0 bottom-0 absolute transform translate-x-1/2 translate-y-1/2 -bottom-1.25 shadow
       ">
         More detail
-      </button>
+      </button> */}
     </div>
     </div>
 

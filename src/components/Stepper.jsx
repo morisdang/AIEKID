@@ -114,18 +114,26 @@ ColorlibStepIcon.propTypes = {
 };
 
 
-export default function Steppers({stepper, activeStep=1}) {
+export default function Steppers({handleChangeMenu, stepper, activeStep=1}) {
+    const conmeo = (label) => {
+        console.log(label)
+        if (label === 'Thanh toán học phí') {
+            handleChangeMenu(4)
+
+        }
+    }
   return (
       <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
         {stepper.map((label) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={ColorlibStepIcon}>{label}</StepLabel>
+          <Step  onClick={() => conmeo(label)} key={label}>
+            <StepLabel StepIconComponent={ColorlibStepIcon}><p className='text-2sm capitalize font-bold'>{label}</p></StepLabel>
           </Step>
         ))}
       </Stepper>
   );
 }
-export function LinearStepper({stepper, activeStep=1}) {
+export function LinearStepper({stepper, activeStep=1 }) {
+
     return (
       <Box sx={{ width: '100%' }}>
         <Stepper activeStep={activeStep} alternativeLabel>

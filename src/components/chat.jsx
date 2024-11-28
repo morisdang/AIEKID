@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import { chatGPT_API } from "./helper/Helper";
 import './scss/chat.scss'
@@ -14,18 +14,27 @@ import {
   SendButton,
 } from "@chatscope/chat-ui-kit-react";
 
-
-
+import {apiChat} from '../ConnectBE/axios'
+import { getCookie } from "../utils/common";
 function Chatbot() {
+
   const [thinking, setThinking] = useState(false);
+  const [name, setName] = useState("");
   const [messages, setMessages] = useState([
     {
-      message: "Hello, I am ChatGPT",
+      message: "Xin chào! Mình là Hamsbo, mình có thể giúp gì cho bạn?",
       sender: "ChatGPT",
     },
   ]); // []
+  useEffect(() => {
+    let family_name =  getCookie("family_name")
+    let given_name =  getCookie("given_name")
+    let name = family_name + " " + given_name
+    setName(name)
 
+  }, []);
   const handleSend = async (message) => {
+
     const newMessage = {
       message: message,
       sender: "user",
@@ -48,54 +57,34 @@ function Chatbot() {
     // chat Messages { sender :"user" or "ChatGPT", message : "the message content here"}
     // api Messages { role: "user" or "assistant" content :"the message content here"}
 
-    let apiMessages = chatMessages.map((messageObject) => {
-      let role = '';
-      if (messageObject.sender === "ChatGPT") {
-        role = "assistant";
-      } else {
-        role = 'user';
-      }
-      return { role: role, content: messageObject.message };
-    });
+    // call api apiChat with chatMessages to get a response from Gemini
 
-    // role : "user" -> a message from the user , "assistent" -> a response from chatGPT
-    // system -> generally one initial message defining how we want chatGPT to talk
-
-    const systemMessage = {
-      role: "system",
-      content: "Explain all concepts like I am 10 years old."
-      // content:"Explain like a pirate."
-    }
-
-    const apiRequestBody = {
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        systemMessage,
-        ...apiMessages
-      ]
-    }
-
-    await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": "Bearer " + chatGPT_API,
-        "Content-Type": "Chatlication/json"
-      },
-      body: JSON.stringify(apiRequestBody)
-    }
-    ).then((data) => {
-      return data.json();
-    }).then((data) => {
-      console.log(data);
-      console.log(data.choices[0].message.content);
-      setMessages([
-        ...chatMessages, {
-          message: data.choices[0].message.content,
-          sender: "ChatGPT"
-        }
-      ]);
-      setThinking(false);
-    });
+    let lastMessage = chatMessages[chatMessages.length - 1]
+    const savedImage = localStorage.getItem('cachedImage');
+    // convert base64 to file
+    const file = new File([savedImage], 'image.png', {type: 'image/png'});
+    // Mark number in begin of message
+    const context = chatMessages
+    .filter((message) => message.sender === "user")
+    .map((message, index) => `${index + 1}. ${message.message}`)
+    .join("\n");
+  
+  console.log(context);
+    apiChat({data: {
+        name: name,
+        context: lastMessage.message,
+        question: lastMessage.message
+    }, image: file}).then((response) => {
+        setMessages([
+            ...chatMessages, {
+              message: response,
+              sender: "ChatGPT"
+            }
+          ]);
+          setThinking(false);
+    }).catch((error) => {
+        console.log(error)
+    })
 
   }
 
@@ -106,7 +95,7 @@ function Chatbot() {
           <MessageList
             typingIndicator={
               thinking ? (
-                <TypingIndicator content="chatgpt is thinking" />
+                <TypingIndicator content="Đợi Hamsbo một lát nhé :>>" />
               ) : null
             }
           >

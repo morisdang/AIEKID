@@ -27,12 +27,9 @@ import { getCookie } from "../utils/common";
 import avartar from "../hamsbo/openart-image_WOgTguAq_1719236055398_raw.png";
 import Header from './Header';
 import Footer from './Footer';
-const menuItems = [
-    { text: 'Registration', icon: <ChatIcon /> , href: '/hambo/chat'},
-    { text: 'Personal details', icon: <ExploreIcon /> , href: '/hambo/lib'},
-    { text: 'Family', icon: <HomeIcon /> , href: '/hambo/export'},
-    { text: 'Review & confirm', icon: <EventIcon /> , href: '/hambo/utils'},
-  ];
+import InfomationDetail from './PersonalDetails/InfomationDetail';
+import PaymentDetail from './PersonalDetails/PaymentDetail';
+import Achievement from './PersonalDetails/Achievement';
 
 const drawerWidth = 320;
 
@@ -90,18 +87,38 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
+const menuItemsSidebar = [
+    { text: 'Personal Detail', icon: <ChatIcon /> , href: '/hambo/chat', progress: 10, component: <InfomationDetail/>},
+    { text: 'Achievement', icon: <ExploreIcon /> , href: '/hambo/lib', progress: 20, component: <Achievement/>},
+    { text: 'Favorate', icon: <HomeIcon /> , href: '/hambo/export', progress: 10},
+    { text: 'Storage', icon: <EventIcon /> , href: '/hambo/utils', progress: 10},
+    { text: 'Premium', icon: <EventIcon /> , href: '/hambo/utils', progress: 10, component: <PaymentDetail/>},
+  ];
 
-export default function DrawerCOM({ component: ComponentP, sidebar: SidebarP}) {
+export default function DrawerCOM({ sidebar: SidebarP}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [Sidebar, setSidebar] = React.useState(null);
-  const [Component, setComponent] = React.useState(<ComponentP />);
+  const [Component, setComponent] = React.useState(null);
   const [ profile, setProfile ] = useState([]);
   const [userId, setUserId] = useState('');
+  const [clickedItem, setClickedItem] = useState(0);
+  const handleChangeMenu = (index) => {
+      setClickedItem(index)
+      if( index == 0){
+          menuItemsSidebar[index].component = <InfomationDetail handleChangeMenu={handleChangeMenu}/>
+        }
+        setComponent(menuItemsSidebar[index].component)
+    }
     React.useEffect(() => {
-        setSidebar(<SidebarP setComponent={setComponent} />);
-    }, [SidebarP]);
+        setSidebar(<SidebarP handleChangeMenu={handleChangeMenu} clickedItem={clickedItem} />);
+    }, [SidebarP, clickedItem]);
   
+    useEffect(() => {
+        handleChangeMenu(0)
+
+    }, []);
+
     useEffect(() => {
       const userId = getCookie("id");
       if (!userId && !['/login', '/register'].includes(window.location.pathname)) {
@@ -109,14 +126,13 @@ export default function DrawerCOM({ component: ComponentP, sidebar: SidebarP}) {
       } else {
         setUserId(userId);
         setProfile({
-            email:getCookie("email"),
-            family_name:getCookie("family_name"),
-            given_name:getCookie("given_name"),
+            email: getCookie("email"),
+            surname: getCookie("family_name") != 'undefined' ? getCookie("family_name") : "Bạn",
+            lastname: getCookie("given_name") != 'undefined' ? getCookie("given_name") : " Mới",
             picture: getCookie("picture") != 'undefined' ? getCookie("picture") : avartar,
-            name: getCookie("name") != 'undefined' ? getCookie("name") : "Bạn Mới",
         })
       }
-    }, []);
+    }, [getCookie("family_name"), getCookie("given_name")]);
 
   const handleDrawerOpen = () => {
     setOpen(true);

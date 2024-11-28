@@ -10,8 +10,7 @@ import { Carousel } from 'antd';
 
 
 
-function HomePage() {
-	const [userId, setUserId] = useState('');
+function HomePage({userId}) {
 	const [indexSwiperBullet, setIndexSwiperBullet] = useState(0);
 
 	const [slidesToShow, setSlidesToShow] = useState(3);
@@ -85,7 +84,7 @@ function HomePage() {
 										<p>{item.content_p}</p>
 										<ul>
 											<li><a href="#" className="button-default">Đọc thêm</a></li>
-											<li><a href="#" className="button-default">Thử ngay nào!</a></li>
+											<li><a href="/hamsbo" className="button-default">Thử ngay nào!</a></li>
 										</ul>
 									</div>
 								</div>
@@ -127,7 +126,9 @@ function HomePage() {
             </p>
           
             <ul>
-                <li><a href="/event" class="button-default bg-blue-600 mt-4">👉 Đăng ký ngay để nhận ưu đãi đặc biệt cho người mới! 🎉</a></li>
+                <li><a href={!userId ? "/login": "/hamsbo"} class="button-default bg-blue-600 mt-4">
+                {!userId ? "👉 Đăng ký ngay để nhận ưu đãi đặc biệt cho người mới! 🎉" : "Học cùng Hamsbo ngay và luôn !!!"}
+                </a></li>
             </ul>
             {/* <ul>
             <li><a href="index.html">Home</a></li>
@@ -175,7 +176,7 @@ function HomePage() {
                                     </p>
 									<ul>
 										<li><a href="#" className="button-default">Đọc thêm</a></li>
-										<li><a href="#" className="button-default">Bắt đầu học ngay!</a></li>
+										<li><a href="/hamsbo" className="button-default">Bắt đầu học ngay!</a></li>
 									</ul>
 								</div>
 							</div>
@@ -284,7 +285,7 @@ function HomePage() {
                                     HamsboKid cam kết mang đến cho trẻ em một hành trình học tập thú vị, nơi mà mỗi ngày đều là một cơ hội để phát triển kỹ năng, khám phá kiến thức và trải nghiệm sự mới mẻ của những phương pháp giảng dạy tiên tiến.</p>
 									<ul className='flex flex-row items-center justify-center'>
 										{/* <li><a href="#" className="button-default">Bắt đầu học ngay!</a></li> */}
-										<li><a href="#" className="button-default">Bắt đầu học ngay!</a></li>
+										<li><a target='_blank' href="/explore" className="button-default">Bắt đầu học ngay!</a></li>
 									</ul>
 								</div>
 								<div className="h-full">

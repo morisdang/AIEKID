@@ -1,4 +1,25 @@
 .chatbot-wrapper{
     position: relative;
     height: 92%;
+
+    [aria-label="ChatGPT"] {
+        background-color: #8beed9; /* Light gray background */
+        color: #333;              /* Dark text color */
+        width: fit-content;
+        padding: 4px;            /* Add padding */
+        border-radius: 5px;       /* Rounded corners */
+        border: 1px solid #ccc;   /* Light gray border */
+        justify-content:flex-start;
+        margin-left: 0 !important;
+    }
+    [aria-label="user"] {
+        background-color: #d89ad1; /* Light gray background */
+        width: fit-content;
+        padding: 4px;            /* Add padding */
+        border-radius: 5px;     
+        border: 1px solid #ccc;   /* Light gray border */
+    }
+    .cs-message__content{
+        background-color:#cbe8ff; /* Light gray background */
+    }
 }

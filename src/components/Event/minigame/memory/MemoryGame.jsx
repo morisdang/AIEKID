@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./style.scss";
-
+import { apiUpdateUserInfo } from "../../../../ConnectBE/axios";
+import { getCookie } from "../../../../utils/common";
 import bee from "../../../../assests/memory/bee.png";
 import crocodile from "../../../../assests/memory/crocodile.png";
 import macaw from "../../../../assests/memory/macaw.png";
@@ -13,7 +14,8 @@ import anaconda from "../../../../assests/memory/anaconda.png";
 import sloth from "../../../../assests/memory/sloth.png";
 import cockatoo from "../../../../assests/memory/cockatoo.png";
 import toucan from "../../../../assests/memory/toucan.png";
-
+import {apiUserInfo} from "../../../../ConnectBE/axios";
+import { useParams } from "react-router-dom";
 const items = [
   { name: "bee", image: bee },
   { name: "crocodile", image: crocodile },
@@ -38,6 +40,9 @@ const MemoryGame = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [winCount, setWinCount] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [totalPoints, setTotalPoints] = useState(0);
+  const [userInfo, setUserInfo] = useState(null);
+const {event_id} = useParams()
 
   const generateRandom = useCallback((size = 4) => {
     let tempArray = [...items];
@@ -98,8 +103,7 @@ const MemoryGame = () => {
         setSecondCard(null);
 
         if (winCount + 1 === cards.length / 2) {
-          setIsGameOver(true);
-          setGameStarted(false);
+          this.stopGame();
         }
       } else {
         setTimeout(() => {
@@ -116,6 +120,69 @@ const MemoryGame = () => {
     }
   };
 
+
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      let userId = getCookie("id");
+      try {
+        const data = await apiUserInfo(userId);
+        let events_history = data ? data.events_history : [];
+        let totalpoint = 0;
+        const eventIndex = events_history.findIndex(event => event.event_id === event_id);
+        if (eventIndex !== -1) {
+            let history = events_history[eventIndex]
+            setTotalPoints(history.total_points);
+          }
+        setUserInfo(data);
+      } catch (error) {
+        console.error('Error fetching user info:', error);
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
+//   create function if user win the game, plus 1 point for user and call api to update user history event
+
+const handleWin = (newTotalPoints) => {
+    let userId = getCookie("id");
+    console.log(userId)
+    let events_history_new = {
+      event_id: event_id,
+      total_points: newTotalPoints,
+      created_at: new Date().toISOString()
+    };
+    console.log(userInfo)
+    let events_history = userInfo ? userInfo.events_history : [];
+    console.log(events_history)
+    const eventIndex = events_history.findIndex(event => event.event_id === event_id);
+    console.log(eventIndex)
+    if (eventIndex !== -1) {
+      events_history[eventIndex] = events_history_new;
+    } else {
+      events_history.push(events_history_new);
+    }
+    console.log(newTotalPoints)
+    apiUpdateUserInfo( {userId:userId, events_history: events_history })
+      .then(() => {
+        console.log('User points and event history updated successfully');
+      })
+      .catch((error) => {
+        console.error('Error updating user points and event history:', error);
+      });
+  };
+//   setTimeout for handle win 1000ms
+useEffect(() => {
+    const interval = setInterval(() => {
+      setTotalPoints(prevTotalPoints => {
+        const newTotalPoints = prevTotalPoints + 1;
+        handleWin(newTotalPoints);
+        return newTotalPoints;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
   const startGame = () => {
     const cardValues = generateRandom();
     const newCards = matrixGenerator(cardValues);
@@ -132,6 +199,13 @@ const MemoryGame = () => {
   const stopGame = () => {
     setGameStarted(false);
     setIsGameOver(true);
+    if (winCount === cards.length / 2){
+        setTotalPoints(prevTotalPoints => {
+            const newTotalPoints = prevTotalPoints + 1;
+            handleWin(newTotalPoints);
+            return newTotalPoints;
+          });
+    }
   };
 
   const formatTime = (seconds) => {

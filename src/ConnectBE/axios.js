@@ -120,8 +120,67 @@ export const apiRegister = async (data) => {
     return res.data
 }
 export const apiLogin = async (data) => {
-    console.log("data", data)
     let res = await API.post('/login', null, { params: data })
+    return res.data
+}
+export const apiEvent = async () => {
+    let res = await API.get('/event')
+    return res.data
+}
+export const apiChat = async (data) => {
+    console.log(data)
+    const formData = new FormData();
+    formData.append('name', data.data.name);
+    formData.append('context', data.data.context);
+    formData.append('question', data.data.question);
+    if (data.image) {
+        formData.append('image', data.image, 'image.png');
+    }
+    let res = await API.post('/chat', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    });
+    return res.data
+}
+export const apiEventGroup = async () => {
+    let res = await API.get('/event/group')
+    return res.data
+}
+export const apiUserInfo = async (userId) => {
+    let res = await API.get(`/user/${userId}`)
+    return res.data
+}
+export const apiUpdateUserInfo = async (data) => {
+    let res = await API.put(`/user/${data.userId}/update`, data)
+    return res.data
+}
+export const apiGetUserBadges = async (userId) => {
+    let res = await API.get(`user/${userId}/badges`)
+    return res.data
+}
+export const apiAllBadges = async () => {
+    let res = await API.get(`/badges`)
+    return res.data
+}
+export const apiAddEventJoin = async (userId, event_id ) => {
+    let res = await API.post(`/user/${userId}/event/join`,  null, { params: {event_id:event_id} })
+    return res.data
+}
+export const apiEventJoined = async (userId) => {
+    let res = await API.get(`/user/${userId}/events/joined`)
+    return res.data
+}
+export const apiUserUpdate = async (userId, data) => {
+    let res = await API.put(`/user/${userId}/update`, data=data)
+    return res.data
+}
+export const apiUserBook= async () => {
+    let res = await API.get(`explore/series`)
+    return res.data
+}
+export const apiExploreSeries= async (userId) => {
+    let res = await API.get(`user/${userId}/books`)
     return res.data
 }
 

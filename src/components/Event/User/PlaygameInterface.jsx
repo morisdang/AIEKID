@@ -15,35 +15,55 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import NavigationIcon from '@mui/icons-material/Navigation';
+import { useParams } from 'react-router-dom';
+import { apiUserUpdate } from "../../../ConnectBE/axios";
+import { getCookie } from "../../../utils/common";
+import {quiz} from "./quiz"
 const fabStyle = {
     position: 'absolute',
     top: 16,
     right: 16,
   };
 
-const options1 = [
+const type = [
     { value: '1', label: 'Quiz' },
     { value: '2', label: 'True or False' },
 ];
-const options2 = [
+const timeLimit = [
     { value: '1', label: '5 seconds' },
     { value: '2', label: '15 seconds' },
     { value: '3', label: '20 seconds' },
     { value: '4', label: '30 seconds' },
 
 ];
-const options3 = [
+const pointType = [
     { value: '1', label: 'Standard' },
     { value: '2', label: 'Double points' },
     { value: '3', label: 'No points' },
 ];
-const options4 = [
+const selectType = [
     { value: '1', label: 'Single-select' },
     { value: '2', label: 'Multi-select' },
 ];
 
-import { useParams } from 'react-router-dom';
-const PlayGameInterface = () => {
+// Data = [
+//     {
+//         type: { value: '1', label: 'Quiz' }, 
+//         title: '?', 
+//         questions: { 1: '', 2: '', 3: '', 4: '' }, 
+//         ansCorrect: '2', 
+//         pointType: { value: '1', label: 'Standard' }, 
+//         selectType: { value: '1', label: 'Single-select' }, 
+//         timeLimit: { value: '1', label: '5 seconds' }, 
+//         previewImage: image_url minh họa 
+//     }
+// ];
+
+
+
+
+
+const PlayGameInterface = ({userInfo}) => {
     const [currentId, setCurrentId] = useState(-1);
     const [ansCorrect, setAnsCorrect] = useState("");
     const [currentChoice, setCurrentChoice] = useState("");
@@ -63,6 +83,7 @@ const PlayGameInterface = () => {
     const [keyAns, setKeyAns] = useState('');
     const [endGame, setEndGame] = useState(false);
     const [isTimeOff, setIsTimeOff] = useState(false);
+    const [totalPoints, setTotalPoints] = useState(0);
     const { event_id } = useParams();
     const navigate = useNavigate();
 
@@ -88,7 +109,8 @@ const PlayGameInterface = () => {
         if (conmeo.length >0){
             const currentSlide = conmeo[nextId];
             if (currentSlide === "end") {
-                setEndGame(true);
+                // setEndGame(true);
+                
             } else {
                 const iconClass = changeIcon(currentSlide.type);
                 const timeNumber = handleFilterTimeLimit(currentSlide.timeLimit);
@@ -121,7 +143,7 @@ const PlayGameInterface = () => {
             setIsLoading(true);
             setCurrentChoice(key)
             setHistoryChoice([...historyChoice, key])
-            
+            setTotalPoints(totalPoints + (ansCorrect === key ? 1 : 0));
         }
 
     };
@@ -151,29 +173,8 @@ const PlayGameInterface = () => {
             // let res = await confirmPIN(event_id);
             // let parsedData = JSON.parse(res.response.conmeo);
             // parsedData.push("end");
-            let parsedData = [
-                {
-                    type: { value: '1', label: 'Quiz' }, 
-                    title: 'What is the capital of France?', 
-                    questions: { 1: 'Berlin', 2: 'Paris', 3: 'Madrid', 4: 'Rome' }, 
-                    ansCorrect: '2', 
-                    pointType: { value: '1', label: 'Standard' }, 
-                    selectType: { value: '1', label: 'Single-select' }, 
-                    timeLimit: { value: '1', label: '5 seconds' }, 
-                    previewImage: doremon 
-                },
-                {
-                    type: { value: '2', label: 'True or False' }, 
-                    title: 'The Earth is flat.', 
-                    questions: { 1: 'True', 2: 'False' },
-                    ansCorrect: '2', 
-                    pointType: { value: '2', label: 'Double points' },
-                    selectType: { value: '1', label: 'Single-select' },
-                    timeLimit: { value: '2', label: '15 seconds' },
-                    previewImage: doremon
-                },
-                "end" 
-            ];
+            let parsedData = quiz.quiz1
+            parsedData.push("end");
             setConmeo(parsedData);
         };
         fetchData();
@@ -187,7 +188,7 @@ const PlayGameInterface = () => {
             {isLoading && <div className="loading"></div>}
 
             {endGame ? (
-                <EndGame />
+                <EndGame event_id={event_id} totalPoints={totalPoints} userInfo={userInfo}/>
             ) : (
                 <div className="wrapper_play_game">
                     <div className='create_slide-container'>

@@ -20,9 +20,9 @@ function Footer({is_show}) {
                         </div>
                         <div className="col-md-6 col-xs-12">
                             <ul className="social-default">
-                                <li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a target="_blank" href="https://www.facebook.com/AIEKID"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a target="_blank" href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a target="_blank" href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div>

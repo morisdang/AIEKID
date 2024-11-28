@@ -17,9 +17,11 @@ function RegisterPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordAgain, setPasswordAgain] = useState('');
-
+    const [lastname, setlastname] = useState("");
+    const [sex, setsex] = useState(null);
+    const [surname, setsurname] = useState("");
     const register = async () => {
-        console.log(email)
+        
         if (!email || !password || !passwordAgain) {
             alert('Xin hãy điền đủ các khoảng trống.');
             return;
@@ -29,12 +31,18 @@ function RegisterPage() {
             alert('Mật khẩu không khớp.');
             return;
           }
-      
-          // Prepare the payload
-          const payload = {
+            //   check lastname, surname, sex
+            if (!lastname || !surname || sex === "") {
+                alert('Xin hãy điền đủ các khoảng trống.');
+                return;
+            }
+            const payload = {
             email,
             password,
-          };
+            lastname,
+            surname,
+            sex
+            };
 
           try {
                 let api_res = await apiRegister(payload);
@@ -80,22 +88,56 @@ function RegisterPage() {
               <img src={icon}
               className="rounded-full"
                 style={{width: '150px'}} alt="logo" />
-              <h4 className="mt-1 ml-10 mb-1 pb-1">We are The AIDEA team</h4>
+              <h4 className="mt-1 ml-10 mb-1 pb-1">Chúng tôi là team AIDEA</h4>
             </div>
 
-            <p>Please fill register account</p>
+            <p>Vui lòng điền đầy đủ thông tin đăng kí dưới đây</p>
 
+            <div className="grid grid-cols-3 gap-4">
+                <MDBInput
+                    wrapperClass="mb-4"
+                    label="Nhập Tên"
+                    id="form3"
+                    type="text"
+                    value={surname}
+                    onChange={(e) => setsurname(e.target.value)}
+                />
+                <MDBInput
+                    wrapperClass="mb-4"
+                    label="Nhập Họ"
+                    id="form4"
+                    type="text"
+                    value={lastname}
+                    onChange={(e) => setlastname(e.target.value)}
+                />
+                <div className="mb-4">
+                    <select
+                        id="sex"
+                        className="w-full  border-gray-400 p-2 rounded-lg"
+                        value={sex}
+                        onChange={(e) => setsex(e.target.value)}
+                    >
+                        <option value="">Chọn Giới tính</option>
+                        <option value="male">Nam</option>
+                        <option value="female">Nữ</option>
+                        <option value="other">Khác</option>
+                    </select>
+                </div>
+                {/* Add another input or element here to complete the 3-column grid */}
+            </div>
 
-            <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'
+            <MDBInput wrapperClass='mb-4' label='Nhập địa chỉ Email' id='form1' type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
-            <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password'
+
+
+            <MDBInput wrapperClass='mb-4' label='Nhập Password' id='form2' type='password'
             value={password}
 
             onChange={(e) => setPassword(e.target.value)}
             />
-            <MDBInput wrapperClass='mb-4' label='Password again' id='reform2' type='password'
+            <MDBInput wrapperClass='mb-4' label='Nhập lại Password ' id='reform2' type='password'
             value={passwordAgain}
 
             onChange={(e) => setPasswordAgain(e.target.value)}
@@ -103,15 +145,15 @@ function RegisterPage() {
 
 
             <div className="text-center pt-1 mb-5 pb-1">
-              <button className="m-2 p-2 rounded-lg w-100 text-white gradient-custom-2" onClick={register}>Finish</button>
-              <a className="text-muted" href="#!">Help?</a>
+              <button className="m-2 p-2 rounded-lg w-100 text-white gradient-custom-2" onClick={register}>Hoàn tất</button>
+              <a className="text-muted" href="#!">Trợ giúp?</a>
             </div>
 
             <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="mb-0">Already have an account?</p>
+              <p className="mb-0">Bạn đã có tài khoản?</p>
               <Link to='/login' >
                 <button className="ripple ripple-surface ripple-surface-dark btn btn-outline-danger mx-2">
-                    Login
+                    Đăng nhập
                 </button>
               </Link>   
             </div>

@@ -4,6 +4,7 @@ import logo from '../assests/logo.png'
 import AccountMenu from './AccountMenu';
 import { MdMenuOpen, MdOutlineMenu } from "react-icons/md";
 import { Link } from 'react-router-dom';
+import { ContactSupportOutlined } from '@mui/icons-material';
 
 const Header = ({ is_show, user_profile }) => {
 
@@ -13,8 +14,8 @@ const Header = ({ is_show, user_profile }) => {
 	const [picture, setPicture] = useState(null);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	useEffect(() => {
-		setUsername(user_profile ? user_profile.name : '')
-		setPicture(user_profile ? user_profile.picture : '')
+		setUsername(user_profile.surname && user_profile.lastname ? user_profile.surname + ' '+ user_profile.lastname : '')
+		setPicture(user_profile.picture ? user_profile.picture : '')
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				setIsVisible(entry.isIntersecting);
@@ -31,12 +32,10 @@ const Header = ({ is_show, user_profile }) => {
 				observer.unobserve(headerRef.current);
 			}
 		};
-	}, [user_profile]);
-
+	}, [is_show, user_profile, user_profile.surname, user_profile.lastname]);
 	const toggleMobileMenu = () => {
 		setIsMobileMenuOpen(!isMobileMenuOpen);
 	};
-
 	return (
 		<section ref={headerRef} className={`header ${is_show ? "" : "hidden"}`}>
 			<header>

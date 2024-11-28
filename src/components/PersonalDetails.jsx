@@ -4,9 +4,10 @@ import Sidebar from './PersonalDetails/Sidebar';
 import Header from './Header';
 import DrawerCOM from './drawer';
 const PersonalDetails = () => {
+    
     return (
         <div className="flex min-h-screen">
-            <DrawerCOM component={InfomationDetail} sidebar={Sidebar}/>
+            <DrawerCOM sidebar={Sidebar}/>
         </div>
     );
 };

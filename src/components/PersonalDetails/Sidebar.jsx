@@ -29,16 +29,11 @@ const classes = {
     listItemClicked:"listItemClicked",
     listItemNotClicked:"listItemNotClicked"
 }
-const Sidebar = ({setComponent}) => {
-    const [clickedItem, setClickedItem] = useState(0);
-    const handleChangeMenu = (index) => {
-        setClickedItem(index)
-        setComponent(menuItems[index].component)
-    }
+const Sidebar = ({handleChangeMenu, clickedItem}) => {
     return (
         <React.Fragment>
 
-        <Box sx={{ p: 2}}>
+        <Box sx={{ p: 2, height:"100vh"}}>
 
             <List>
                 {menuItems && menuItems.length > 0 && menuItems.map((item, index) => (
@@ -58,14 +53,20 @@ const Sidebar = ({setComponent}) => {
                 }
             </List>
         </Box>
-        <Box sx={{ p: 2, position: 'absolute', bottom: '10px'}}>
+        <Box sx={{ p: 2, position: 'absolute', width:"100%", bottom: '10px'}}>
             <button type="button" className="w-100 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-            Frequently Asked Questions
+            
+            <a
+                href="https://www.facebook.com/AIEKID"
+                target="_blank"
+                className="text-white underline mt-2">
+                Our Fanpage
+              </a>
             </button>
 
-            <button type="button" className="w-100 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            {/* <button type="button" className="w-100 text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
             Contact us
-            </button>
+            </button> */}
         </Box>
         </React.Fragment>
 

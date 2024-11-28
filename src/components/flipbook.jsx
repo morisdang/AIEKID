@@ -3,7 +3,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import './scss/flipbook.scss'
 import React, { useState, useEffect, useRef } from "react";
 
-
+import html2canvas from 'html2canvas';
 
 
 
@@ -14,7 +14,7 @@ function FLipBook({currentPDF, currentPage}){
     const viewerRef = useRef(null); 
     const canvasRef = useRef(null);
     const contextRef = useRef(null);
-
+    const pageRef = useRef(null);
     const [isDrawing, setIsDrawing] = useState(false);
 
     const canvasOffSetX = useRef(null);
@@ -26,6 +26,7 @@ function FLipBook({currentPDF, currentPage}){
 
     function onDocumentLoadSuccess({ numPages }) {
       setNumPages(numPages);
+      savePageAsImage();
     }
     
     const flip = (action) => {
@@ -124,15 +125,33 @@ function FLipBook({currentPDF, currentPage}){
     const stopDrawingRectangle = () => {
         setIsDrawing(false);
     };
+    const savePageAsImage = async () => {
+        if (pageRef.current) {
+          const canvas = await html2canvas(pageRef.current);
+          const imgData = canvas.toDataURL('image/jpeg');
+          localStorage.setItem('cachedImage', imgData);
 
+        }
+      };
+
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          savePageAsImage();
+        }, 1000); // Adjust the timeout duration as needed
+    
+        return () => clearTimeout(timer); // Cleanup the timeout on component unmount
+      }, [currentPage, currentPDF]);
     return (
         <div className='flipbook flex flex-column'>
+
             <Document
             file={currentPDF}
             onLoadSuccess={onDocumentLoadSuccess}
             // rotate={360}
             >
-            <Page width={440} height={612} pageNumber={currentPage} />
+            <Page width={440} height={612} inputRef={pageRef} pageNumber={currentPage} />
             </Document>
 
 

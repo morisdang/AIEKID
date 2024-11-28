@@ -33,15 +33,14 @@ const eventLists_org = [
     children: eventList,
   },
 ];
-function HomeExplore() {
+export default function HomeExplore() {
   const [profile, setProfile] = useState([]);
   useEffect(() => {
     setProfile({
-      email: getCookie("email"),
-      family_name: getCookie("family_name"),
-      given_name: getCookie("given_name"),
-      picture: getCookie("picture") != 'undefined' ? getCookie("picture") : avartar,
-      name: getCookie("name") != 'undefined' ? getCookie("name") : "Bạn Mới",
+        email: getCookie("email"),
+        surname: getCookie("family_name") != 'undefined' ? getCookie("family_name") : "Bạn",
+        lastname: getCookie("given_name") != 'undefined' ? getCookie("given_name") : " Mới",
+        picture: getCookie("picture") != 'undefined' ? getCookie("picture") : avartar,
     });
   }, []);
 
@@ -77,7 +76,7 @@ function HomeExplore() {
               variant="h6"
               sx={{ color: "text.secondary" }}
             >
-              Xin chào {profile.family_name} {profile.given_name}, chào mừng bạn
+              Xin chào {profile.surname} {profile.lastname}, chào mừng bạn
               đến với phần Khám Phá của AIEKID. Chúc bạn sẽ có những trải nghiệm
               thật đáng giá nhé !
             </Typography>
@@ -94,4 +93,4 @@ function HomeExplore() {
   );
 }
 
-export default HomeExplore;
+
