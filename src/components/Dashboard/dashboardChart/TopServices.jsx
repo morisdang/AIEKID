@@ -3,7 +3,11 @@ const TopServices = () => {
   const data = [
     // { name: "Khóa học online", popularity: 45, color: "#1299fa" },
     // { name: "Khóa học offline", popularity: 29, color: "#26dfa0" },
-    { name: "Gọi điện tư vấn", popularity: 18, color: "#8554e6" },
+    { name: "Sự kiện", popularity: 45.1, color: "#8554e6" },
+    { name: "Khám phá", popularity: 20.4, color: "#1299fa" },
+    { name: "Trang chủ", popularity: 17.1, color: "#26dfa0" },
+    { name: "Thư viện", popularity: 10.3, color: "#fe8f0e" },
+    { name: "Chatbot", popularity: 4.6, color: "#CCFF00" },
     // { name: "Đặt lịch tư vấn", popularity: 25, color: "#fe8f0e" },
   ];
 

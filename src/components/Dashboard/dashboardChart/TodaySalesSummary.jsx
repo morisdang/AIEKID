@@ -4,14 +4,17 @@ import { AiOutlineBarChart, AiFillTag } from "react-icons/ai";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { PiExport } from "react-icons/pi";
 
-const TodaySalesSummary = () => {
+const TodaySalesSummary = ({revenue}) => {
+
+    let totalRevenue = revenue.reduce((acc, item) => acc + item, 0);
+
   const summaryData = [
     {
       icon: <AiOutlineBarChart size={24} color="white" />,
       iconBackGroundColor: "#fb597e",
-      value: "$570",
+      value: totalRevenue +" VND",
       label: "Tổng doanh số",
-      scale: 1.2,
+      scale: 0,
       scaleType: "+",
       backGroundColor: "#ffe2e6",
     },
@@ -27,9 +30,9 @@ const TodaySalesSummary = () => {
     {
       icon: <BsFillPersonPlusFill size={24} color="white" />,
       iconBackGroundColor: "#bf84ff",
-      value: "5",
+      value: "0",
       label: "Khách hàng mới",
-      scale: 1.5,
+      scale: 0,
       scaleType: "+",
       backGroundColor: "#f4e8fe",
     },

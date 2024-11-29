@@ -12,44 +12,75 @@ import VolumeServiceLevel from "./dashboardChart/VolumeServiceLevel";
 import { apiGetBank } from "../../ConnectBE/axios";
 import {useState, useEffect} from 'react';
 import TableConmeo from "./table";
+import { Button } from "antd";
+
+
+
+
+
 ChartJS.register(...registerables);
 
 const Dashboard = () => {
+
     const [bankData, setBankData] = useState([]);
+    const [dates, setDates] = useState([]);
+    const [revenue, setRevenue] = useState([]);
     useEffect(() => {
         const fetchBankData = async () => {
             try {
               const response = await apiGetBank();
-              setBankData(response);
+            //   filter reponse by day timestamp
+            const groupedData = response.reduce((acc, item) => {
+                const itemDate = new Date(item.timestamp).toDateString();
+                if (!acc[itemDate]) {
+                  acc[itemDate] = [];
+                }
+                acc[itemDate].push(item);
+                return acc;
+              }, {});
+      
+              const groupedArray = Object.keys(groupedData).map(date => {
+                const sum = groupedData[date].reduce((total, item) => total + item.amount, 0);
+                return {
+                  date,
+                  sum,
+                  items: groupedData[date]
+                };
+              });
+
+              const datesArray = groupedArray.map(group => group.date);
+              const revenueArray = groupedArray.map(group => group.sum);
+      
+              setDates(datesArray);
+              setRevenue(revenueArray);
+              setBankData(groupedArray);
             } catch (error) {
               console.error('Error fetching bank data:', error);
             }
           };
-      
           fetchBankData();
 
     }, []);
-
-    console.log(bankData)
+// console.log(bankData);
   return (  
     <div>
 
-            
     <LayoutDashboard
       content={
         <div className="dashboard">
           {/* <div className="grid grid-flow-col grid-rows-2 grid-cols-3 gap-8"> */}
           <div className="today_sales_summary dashboard_boxshadow">
-            <TodaySalesSummary />
+            <TodaySalesSummary revenue={revenue}/>
           </div>
           <div className="visitors_Chart dashboard_boxshadow">
             <VisitorsChart />
           </div>
 
           <div className="revenue_chart dashboard_boxshadow">
-            <RevenueChart />
+            <RevenueChart dates={dates} revenue={revenue}/>
           </div>
-
+          
+          
         
 
           {/* <div className="satisfaction_chart dashboard_boxshadow">
@@ -104,7 +135,6 @@ const Dashboard = () => {
 
             </tbody>
         </table> */}
-        <TableConmeo data={bankData}/>
     </div>
 
   );

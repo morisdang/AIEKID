@@ -2,10 +2,10 @@
 import React, { useEffect } from "react";
 import { Layout, Menu } from "antd";
 import { AiOutlineDashboard } from "react-icons/ai";
-
+import Button from '@mui/material/Button';
 const { Sider } = Layout;
 
-const SliderComponent = () => {
+const SliderComponent = ({setTab}) => {
 
 
     return (
@@ -23,18 +23,26 @@ const SliderComponent = () => {
             <div className="demo-logo-vertical text-center uppercase text-2xl font-bold mt-3">
                 Tổng quát
             </div>
-            <Menu
-                mode="inline"
-                items={[
-                    {
-                        key: "dashboard",
-                        icon: <AiOutlineDashboard />,
-                        label: "Dashboard",
-                    },
-                
-                ]}
-                className="my-10"
-            />
+            
+            <div className="p-4">
+                <div className="flex justify-center items-center">
+                    <AiOutlineDashboard />
+                    <Button onClick={()=>setTab("dashboard")} size="small">Dashboard</Button>
+
+                </div>
+                <div className="flex justify-center items-center">
+                    <AiOutlineDashboard />
+                    <Button onClick={()=>setTab("user")} size="small">User</Button>
+
+                </div>
+                <div className="flex justify-center items-center">
+                    <AiOutlineDashboard />
+                    <Button onClick={()=>setTab("userInfo")} size="small">User data information</Button>
+
+                </div>
+            </div>
+            
+  
         </Sider>
     );
 };

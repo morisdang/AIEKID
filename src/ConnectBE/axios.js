@@ -128,7 +128,6 @@ export const apiEvent = async () => {
     return res.data
 }
 export const apiChat = async (data) => {
-    console.log(data)
     const formData = new FormData();
     formData.append('name', data.data.name);
     formData.append('context', data.data.context);
@@ -157,6 +156,11 @@ export const apiUpdateUserInfo = async (data) => {
 }
 export const apiGetUserBadges = async (userId) => {
     let res = await API.get(`user/${userId}/badges`)
+    return res.data
+}
+export const apiAllUser = async (data) => {
+    console.log(data)
+    let res = await API.get(`user`, data=data, {params: data})
     return res.data
 }
 export const apiAllBadges = async () => {
