@@ -47,7 +47,17 @@ import poemImage41 from "../assets/images/canvas/poem/41.jpg";
 import poemImage42 from "../assets/images/canvas/poem/42.jpg";
 import poemImage43 from "../assets/images/canvas/poem/43.jpg";
 import poemImage44 from "../assets/images/canvas/poem/44.jpg";
+import dvdb_1 from '../assests/khám phá/động vật dưới biển/Screenshot 2024-11-28 222959.png'
+import dvdb_2 from '../assests/khám phá/động vật dưới biển/Screenshot 2024-11-28 223039.png'
+import dvdb_3 from '../assests/khám phá/động vật dưới biển/Screenshot 2024-11-28 223056.png'
+import dvdb_4 from '../assests/khám phá/động vật dưới biển/Screenshot 2024-11-28 223113.png'
+import dvdb_5 from '../assests/khám phá/động vật dưới biển/Screenshot 2024-11-28 223128.png'
 
+import lc_1 from '../assests/khám phá/loài chim/Screenshot 2024-11-29 015043.png'
+import lc_2 from '../assests/khám phá/loài chim/Screenshot 2024-11-29 015101.png'
+import lc_3 from '../assests/khám phá/loài chim/Screenshot 2024-11-29 015117.png'
+import lc_4 from '../assests/khám phá/loài chim/Screenshot 2024-11-29 015144.png'
+import lc_5 from '../assests/khám phá/loài chim/Screenshot 2024-11-29 015205.png'
 const topicImageData = [
   {
     id: "1",
@@ -59,6 +69,28 @@ const topicImageData = [
       { name: "Con voi", image: zooImage6 },
       { name: "Hành trình kết thúc", image: zooImage7 },
       { name: "Câu hỏi", image: zooImage8 },
+    ],
+  },
+  {
+    id: "6", // Corrected the duplicate id from "547" to "548"
+    contentList: [
+      { name: "Con cá voi", image: dvdb_1 },
+      { name: "Con cá mập", image: dvdb_2 },
+      { name: "Con bạch tuột", image: dvdb_3 },
+      { name: "Con rùa biển ", image: dvdb_4 },
+      { name: "Con sao biển", image: dvdb_5 },
+
+    ],
+  },
+  {
+    id: "7", // Corrected the duplicate id from "547" to "548"
+    contentList: [
+      { name: "Chim bồ câu", image: lc_1 },
+      { name: "Chim đại bàng", image: lc_2 },
+      { name: "Con cú đêm", image: lc_3 },
+      { name: "Con chim sẻ ", image: lc_4 },
+      { name: "Con vịt trời", image: lc_5 },
+
     ],
   },
   {
@@ -114,6 +146,7 @@ const topicImageData = [
       { name: "Câu hỏi", image: poemImage44 },
     ],
   },
+
 ];
 
 export default topicImageData;

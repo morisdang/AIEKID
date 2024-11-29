@@ -1,46 +1,59 @@
 // components/VisitorsChart.js
 import { Line } from "react-chartjs-2";
+import axios from "axios";
+import Papa from "papaparse";
+import { useEffect, useState } from "react";
+
 
 const VisitorsChart = () => {
+    const [dates, setDates] = useState([]);
+    const [totalVisits, setTotalVisits] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('summary_visits.csv');
+            const parsedData = Papa.parse(response.data, { header: true });
+            const datesArray = parsedData.data.map(row => row.date);
+            const totalVisitsArray = parsedData.data.map(row => parseInt(row.total_visits, 10));
+            setDates(datesArray);
+            setTotalVisits(totalVisitsArray);
+          } catch (error) {
+            console.error('Error fetching the CSV data', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+
+
   const data = {
-    labels: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
+    labels: dates,
     datasets: [
+    //   {
+    //     label: "Loyal Customers",
+    //     data: [120, 190, 300, 500, 200, 300, 400, 120, 190, 300, 500, 200],
+    //     borderColor: "#b233f5",
+    //     backgroundColor: "#b233f5",
+    //     fill: false,
+    //     tension: 0.4,
+    //     pointBackgroundColor: "#b233f5",
+    //     pointRadius: 0,
+    //   },
+    //   {
+    //     label: "New Customers",
+    //     data: [150, 230, 320, 420, 210, 310, 450, 150, 230, 320, 420, 210],
+    //     borderColor: "#ed6a69",
+    //     backgroundColor: "#ed6a69",
+    //     fill: false,
+    //     tension: 0.4,
+    //     pointBackgroundColor: "#ed6a69",
+    //     pointRadius: 0,
+    //   },
       {
-        label: "Loyal Customers",
-        data: [120, 190, 300, 500, 200, 300, 400, 120, 190, 300, 500, 200],
-        borderColor: "#b233f5",
-        backgroundColor: "#b233f5",
-        fill: false,
-        tension: 0.4,
-        pointBackgroundColor: "#b233f5",
-        pointRadius: 0,
-      },
-      {
-        label: "New Customers",
-        data: [150, 230, 320, 420, 210, 310, 450, 150, 230, 320, 420, 210],
-        borderColor: "#ed6a69",
-        backgroundColor: "#ed6a69",
-        fill: false,
-        tension: 0.4,
-        pointBackgroundColor: "#ed6a69",
-        pointRadius: 0,
-      },
-      {
-        label: "Unique Customers",
-        data: [100, 170, 250, 350, 150, 270, 370, 100, 170, 250, 350, 150],
+        label: "Total Customers Visit",
+        data: totalVisits,
         borderColor: "#4cd660",
         backgroundColor: "#4cd660",
         fill: false,
@@ -66,7 +79,7 @@ const VisitorsChart = () => {
               size: 20,
               weight: "bold",
               family: "Arial",
-            },
+            },  
           },
           legend: {
             position: "bottom",

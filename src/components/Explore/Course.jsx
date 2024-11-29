@@ -17,6 +17,31 @@ import topicContentData from "../../utils/topicData";
 import topicImageData from "../../utils/topicImageData";
 import { useParams } from "react-router-dom";
 import { eventList } from "../../utils/data";
+
+
+import dvnt_bia from '../../assests/khám phá/ảnh bìa/Screenshot 2024-11-28 231132.png'
+import dvnt_bia1 from '../../assests/khám phá/ảnh bìa/Screenshot 2024-11-28 231114.png'
+import dvnt_bia2 from '../../assests/khám phá/ảnh bìa/Screenshot 2024-11-28 231132.png'
+import dvnt_bia3 from '../../assests/khám phá/ảnh bìa/Screenshot 2024-11-29 020525.png'
+import dvnt_1 from '../../assests/khám phá/Động vật nông trại/Screenshot 2024-11-28 222621.png'
+import dvnt_2 from '../../assests/khám phá/Động vật nông trại/Screenshot 2024-11-28 222743.png'
+import dvnt_3 from '../../assests/khám phá/Động vật nông trại/Screenshot 2024-11-28 222804.png'
+import dvnt_4 from '../../assests/khám phá/Động vật nông trại/Screenshot 2024-11-28 222823.png'
+import dvnt_5 from '../../assests/khám phá/Động vật nông trại/Screenshot 2024-11-28 222823.png'
+import { TroubleshootRounded } from "@mui/icons-material";
+
+const topicList = [
+    {
+      id: "1",
+      title: 'Chương I',
+      description: 'Hành trình với sao Hỏa nha!',
+      image_uri: dvnt_bia,
+    },
+
+
+]  
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: '#fff',
   ...theme.typography.body2,
@@ -44,46 +69,32 @@ const breadcrumbs = [
 ]
 
 
-const topicList = [
-    {
-      id: "1",
-      title: 'topic 1',
-      description: 'Hành trình với sao Hỏa nha!',
-      image_uri: doremon,
-    },
-
-]  
 const lessonList = [
     {
       id: "1",
-      title: 'lesson 1',
+      title: 'Động vật hoang dã',
       description: 'Hành trình với sao Hỏa nha!',
-      image_uri: doremon,
+      image_uri: dvnt_bia1,
+      active: true,
+
     },
     {
-      id: "2",
-      title: 'lesson 2',
+      id: "6",
+      title: 'Động vật dưới biển',
       description: 'Hành trình với sao Hỏa nha!',
-      image_uri: doremon,
+      image_uri: dvnt_bia2,
+      active: true,
     },
     {
-      id: "3",
-      title: 'lesson 3',
+      id: "7",
+      title: 'Các loài chim',
       description: 'Hành trình với sao Hỏa nha!',
-      image_uri: doremon,
+      image_uri: dvnt_bia3,
+      active: false,
+
     },
-    {
-      id: "4",
-      title: 'lesson 4',
-      description: 'Hành trình với sao Hỏa nha!',
-      image_uri: doremon,
-    },
-    {
-      id: "5",
-      title: 'lesson 5',
-      description: 'Hành trình với sao Hỏa nha!',
-      image_uri: doremon,
-    },
+
+
 ]  
 
 const explore_dict = {

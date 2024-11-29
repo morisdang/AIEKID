@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid2';
 import doremon from '../../assests/doremon.jpg'
 import Card from '@mui/material/Card';
 import { useNavigate } from 'react-router-dom';
-
+import './scss/LessonList.scss'
 
 function LessonExplore({contentList, handleClickContent}) {
 const navigate = useNavigate();
@@ -21,14 +21,16 @@ const navigate = useNavigate();
       {contentList && contentList.map((item, index) => (
 
         <Grid key={index} size={{ xs: 2, sm: 4, md: 4 }}>
-          <Card sx={{ width: "98%" }} onClick={() => (handleClickContent(item, 'lesson'))}>
-            <div className="max-w-sm shadow-lghover:shadow-xl bg-white rounded-lg  overflow-hidden transform transition duration-500 hover:scale-105">
+          <Card sx={{ width: "98%" }} onClick={() => { item.active ? handleClickContent(item, 'lesson') : ""}}>
+            <div className={`${item.active ? "" : "opacity-70"} max-w-sm shadow-lghover:shadow-xl bg-white rounded-lg  overflow-hidden transform transition duration-500 hover:scale-105`}>
               <div className="relative">
                 <img className="w-full h-48 object-cover" src={item.image_uri} alt="Hành trình với sao Hỏa" />
               </div>
 
               <div className="p-2 text-center">
                 <h2 className='text-2xl font-semibold text-gray-800'>{item.title}</h2>
+                {!item.active ? <p className='conmeo'>Chưa mở khóa</p> : ""}
+                
               </div>
             </div>
 

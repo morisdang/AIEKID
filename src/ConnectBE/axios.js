@@ -163,6 +163,10 @@ export const apiAllBadges = async () => {
     let res = await API.get(`/badges`)
     return res.data
 }
+export const apiGetBank = async () => {
+    let res = await API.get(`/bank/summary`)
+    return res.data
+}
 export const apiAddEventJoin = async (userId, event_id ) => {
     let res = await API.post(`/user/${userId}/event/join`,  null, { params: {event_id:event_id} })
     return res.data

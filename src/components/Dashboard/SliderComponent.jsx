@@ -30,7 +30,9 @@ const SliderComponent = () => {
                         key: "dashboard",
                         icon: <AiOutlineDashboard />,
                         label: "Dashboard",
-                    }]}
+                    },
+                
+                ]}
                 className="my-10"
             />
         </Sider>

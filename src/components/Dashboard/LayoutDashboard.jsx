@@ -8,6 +8,7 @@ const { Content } = Layout;
 
 const LayoutDashboard = (props) => {
     const { content } = props;
+    const [collapsed, setCollapsed] = React.useState(false);
 
     return (
         <Layout className="min-h-screen">
